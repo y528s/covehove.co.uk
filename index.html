@@ -94,6 +94,12 @@
         "postalCode": "BN3 4AD",
         "addressCountry": "GB"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.8297407,
+        "longitude": -0.1824495
+      },
+      "hasMap": "https://www.openstreetmap.org/?mlat=50.8297407&mlon=-0.1824495#map=17/50.8297407/-0.1824495",
       "areaServed": [
         { "@type": "City", "name": "Hove" },
         { "@type": "City", "name": "Brighton" }
@@ -911,17 +917,28 @@
         </dl>
 
         <div class="map-card">
-          <div class="map-card__art" aria-hidden="true">
-            <img src="assets/img/placeholder-map.svg" alt="" width="800" height="600" loading="lazy" decoding="async">
+          <!-- OpenStreetMap. Chosen over Google Maps because it sets no
+               advertising or tracking cookies, so it does not conflict with the
+               consent banner. Loads only when scrolled into view. -->
+          <div class="map-card__map">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.1874%2C50.8272%2C-0.1774%2C50.8322&amp;layer=mapnik&amp;marker=50.8297407%2C-0.1824495"
+              title="Map showing Cove Gym &amp; Studio on New Church Road, Hove"
+              width="600" height="450" loading="lazy" referrerpolicy="no-referrer"></iframe>
           </div>
-          <address style="font-style:normal">
-            <strong>Cove Gym &amp; Studio</strong><br>
-            29–31 New Church Road, Hove, BN3 4AD
-          </address>
-          <div class="btn-row">
-            <a class="btn btn--primary" id="directions-link"
-               href="https://www.google.com/maps/search/?api=1&amp;query=29-31+New+Church+Road+Hove+BN3+4AD"
-               target="_blank" rel="noopener">Get directions</a>
+          <div class="map-card__panel">
+            <address>
+              <strong>Cove Gym &amp; Studio</strong><br>
+              29–31 New Church Road, Hove, BN3 4AD
+            </address>
+            <div class="btn-row">
+              <a class="btn btn--primary" id="directions-link"
+                 href="https://www.google.com/maps/search/?api=1&amp;query=29-31+New+Church+Road+Hove+BN3+4AD"
+                 target="_blank" rel="noopener">Get directions</a>
+              <a class="btn btn--secondary"
+                 href="https://www.openstreetmap.org/?mlat=50.8297407&amp;mlon=-0.1824495#map=17/50.8297407/-0.1824495"
+                 target="_blank" rel="noopener">Larger map</a>
+            </div>
           </div>
         </div>
 
