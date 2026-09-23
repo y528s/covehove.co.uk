@@ -102,25 +102,48 @@ international format: `+441273750333`).
 
 ### The classes timetable
 
-`config.js` → `timetable`. It starts empty on purpose. While it is empty the site shows
-the class list and a line saying to ask us for the timetable — nothing looks broken.
+`config.js` → `timetable`. **It is filled in** — all 39 classes from the Canva
+timetable, Monday to Saturday, transcribed and checked against the original.
 
-When Beth sends the data, add one line per class:
+Each line looks like this:
 
 ```js
-timetable: [
-  { day: "Monday", time: "7.00am", name: "Strength & Conditioning", room: "Gym" },
-  { day: "Monday", time: "9.30am", name: "Pilates", room: "Studio" },
-],
+{ day: "Monday", time: "7am", name: "Strength & Conditioning", room: "Gym" },
 ```
 
-`day` must be spelled out in full (Monday … Saturday) and `room` must be `Gym` or `Studio`.
-A proper table appears as soon as there is at least one line.
+- `day` spelled out in full: Monday … Saturday
+- `time` exactly as you want it to read — `7am`, `8.20am`, `12.30pm`, `7.15pm`
+- `room` must be either `Gym` or `Studio`
 
-**Do not type times off the PDF.** Use the clean list Beth supplies.
+Lines appear in the order you write them, grouped under their day. Delete a line and
+the class disappears; add one and it appears. The page lays the days out in three
+columns on a desktop, two on a tablet and one on a phone.
 
-To offer the PDF as a download, put it in `assets/docs/` and write its filename into
-`config.js` → `timetablePdf`. Leave it empty and the download button stays hidden.
+If you empty the list entirely, the timetable disappears and the site falls back to
+"ask us for this week's timetable", so nothing ever looks broken.
+
+### Holiday closures
+
+`config.js` → `closures`. Shown as a navy notice under the timetable.
+
+```js
+{ what: "Studio closed, no classes", when: "Rosh Hashana, Fri 11 – Sun 13 September" },
+```
+
+It starts empty **on purpose**. The two closures printed on the Canva timetable —
+Rosh Hashana and Yom Kippur — had already passed by the time the site was built, and a
+closure notice for a date that has gone by makes the whole timetable look stale. Add
+the next ones when you know them.
+
+### The timetable PDF
+
+Export the Canva timetable as a PDF, put it in `assets/docs/`, and write the filename
+into `config.js` → `timetablePdf`. The "Download the timetable" button un-hides itself.
+Leave it empty and the button stays hidden.
+
+Keep the PDF for printing and the wall. The page itself uses the data above rather than
+an image of the timetable, because an image cannot be read by a screen reader, cannot be
+searched by Google, and is unreadable on a phone without pinching.
 
 ### Photos
 

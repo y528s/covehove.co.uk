@@ -146,12 +146,72 @@ window.COVE_CONFIG = {
      "room" must be either: Gym  or  Studio
      -------------------------------------------------------------------- */
   timetable: [
-    // { day: "Monday", time: "7.00am", name: "Strength & Conditioning", room: "Gym" },
+    { day: "Monday", time: "7am", name: "Strength & Conditioning", room: "Gym" },
+    { day: "Monday", time: "8am", name: "Energising Flow", room: "Studio" },
+    { day: "Monday", time: "9am", name: "Strength", room: "Gym" },
+    { day: "Monday", time: "9am", name: "Gentle Yoga", room: "Studio" },
+    { day: "Monday", time: "10am", name: "Core", room: "Gym" },
+    { day: "Monday", time: "6pm", name: "Strength", room: "Gym" },
+    { day: "Monday", time: "7.15pm", name: "Pilates", room: "Studio" },
+
+    { day: "Tuesday", time: "7.15am", name: "Energising Flow", room: "Studio" },
+    { day: "Tuesday", time: "8.20am", name: "Pilates", room: "Studio" },
+    { day: "Tuesday", time: "9am", name: "Strength", room: "Gym" },
+    { day: "Tuesday", time: "9.05am", name: "Pilates", room: "Studio" },
+    { day: "Tuesday", time: "10am", name: "Move Better", room: "Studio" },
+    { day: "Tuesday", time: "12.30pm", name: "Embodied Yoga", room: "Studio" },
+    { day: "Tuesday", time: "6pm", name: "Yin Yoga", room: "Studio" },
+    { day: "Tuesday", time: "7pm", name: "Strength", room: "Gym" },
+
+    { day: "Wednesday", time: "7am", name: "Strength", room: "Gym" },
+    { day: "Wednesday", time: "7am", name: "Pilates", room: "Studio" },
+    { day: "Wednesday", time: "8am", name: "Burn", room: "Gym" },
+    { day: "Wednesday", time: "8am", name: "Pilates", room: "Studio" },
+    { day: "Wednesday", time: "9am", name: "Strength", room: "Gym" },
+    { day: "Wednesday", time: "10am", name: "Healthy Spine", room: "Studio" },
+    { day: "Wednesday", time: "12.30pm", name: "Meditation", room: "Studio" },
+    { day: "Wednesday", time: "6pm", name: "Circuits", room: "Gym" },
+    { day: "Wednesday", time: "7pm", name: "Gentle Yoga", room: "Studio" },
+
+    { day: "Thursday", time: "7am", name: "Pilates", room: "Studio" },
+    { day: "Thursday", time: "8am", name: "Dynamic Flow Yoga", room: "Studio" },
+    { day: "Thursday", time: "9am", name: "Strength", room: "Gym" },
+    { day: "Thursday", time: "6pm", name: "Strength", room: "Gym" },
+    { day: "Thursday", time: "6pm", name: "Pilates", room: "Studio" },
+    { day: "Thursday", time: "7pm", name: "Burn", room: "Gym" },
+
+    { day: "Friday", time: "7am", name: "Strength & Conditioning", room: "Gym" },
+    { day: "Friday", time: "7am", name: "Energising Flow", room: "Studio" },
+    { day: "Friday", time: "8am", name: "Healthy Spine", room: "Studio" },
+    { day: "Friday", time: "8.30am", name: "Strength", room: "Gym" },
+    { day: "Friday", time: "9.30am", name: "Core", room: "Gym" },
+    { day: "Friday", time: "10am", name: "Move Better", room: "Studio" },
+    { day: "Friday", time: "11.30am", name: "Dru Yoga", room: "Studio" },
+
+    { day: "Saturday", time: "9am", name: "Circuits", room: "Gym" },
+    { day: "Saturday", time: "10am", name: "Strength", room: "Gym" },
   ],
 
   // Put the timetable PDF in assets/docs/ and write its filename here.
   // Leave it empty ("") and the download link stays hidden.
   timetablePdf: "",
+
+  /* --------------------------------------------------------------------
+     6b. CHAGIM AND HOLIDAY CLOSURES
+     --------------------------------------------------------------------
+     Shown as a notice under the timetable. Leave the list empty and no
+     notice appears.
+
+     IMPORTANT: take past dates out. A closure notice for a date that has
+     already gone by makes the whole timetable look out of date.
+
+     To add one, copy a line:
+       { what: "Studio closed, no classes", when: "Rosh Hashana, Fri 11 – Sun 13 September" },
+     -------------------------------------------------------------------- */
+  closures: [
+    // The two on the Canva timetable have already passed, so they are not
+    // listed here. Sukkot is the next one to add — check the dates with Timmo.
+  ],
 
   /* --------------------------------------------------------------------
      7. FORM (Web3Forms)

@@ -316,30 +316,72 @@
 
       var days = DAY_ORDER.filter(function (d) { return byDay[d]; });
 
-      var table = document.createElement('table');
-      table.className = 'timetable';
-      table.innerHTML = '<caption>The weekly class timetable. Times may change in school holidays.</caption>';
+      var heading = document.createElement('h3');
+      heading.className = 'timetable-heading';
+      heading.textContent = 'The weekly timetable';
+      wrap.appendChild(heading);
 
-      var tbody = document.createElement('tbody');
+      var intro = document.createElement('p');
+      intro.className = 'muted small timetable-intro';
+      intro.textContent = 'The same every week. Classes are in the Gym or the Studio — it says which.';
+      wrap.appendChild(intro);
+
+      var grid = document.createElement('div');
+      grid.className = 'timetable-grid';
+
       days.forEach(function (day) {
-        var head = document.createElement('tr');
-        head.innerHTML = '<th scope="rowgroup" colspan="3"></th>';
-        $('th', head).textContent = day;
-        tbody.appendChild(head);
+        var col = document.createElement('section');
+        col.className = 'tt-day';
+
+        var h = document.createElement('h4');
+        h.className = 'tt-day__name';
+        h.textContent = day;
+        col.appendChild(h);
+
+        var ul = document.createElement('ul');
+        ul.className = 'tt-list';
 
         byDay[day].forEach(function (r) {
-          var tr = document.createElement('tr');
-          tr.innerHTML = '<td></td><td></td><td><span class="room"></span></td>';
-          var cells = tr.children;
-          cells[0].textContent = r.time;
-          cells[1].textContent = r.name;
-          $('.room', cells[2]).textContent = r.room || '';
-          tbody.appendChild(tr);
+          var li = document.createElement('li');
+          li.className = 'tt-item';
+          li.innerHTML = '<span class="tt-time"></span>' +
+                         '<span class="tt-name"></span>' +
+                         '<span class="room"></span>';
+          $('.tt-time', li).textContent = r.time;
+          $('.tt-name', li).textContent = r.name;
+          $('.room', li).textContent = r.room || '';
+          ul.appendChild(li);
         });
+
+        col.appendChild(ul);
+        grid.appendChild(col);
       });
 
-      table.appendChild(tbody);
-      wrap.appendChild(table);
+      wrap.appendChild(grid);
+
+      // Holiday closures, if any are listed
+      var closures = CFG.closures || [];
+      if (closures.length) {
+        var box = document.createElement('div');
+        box.className = 'closures';
+        var ch = document.createElement('h4');
+        ch.className = 'closures__title';
+        ch.textContent = 'Closures';
+        box.appendChild(ch);
+
+        var cl = document.createElement('ul');
+        cl.className = 'closures__list';
+        closures.forEach(function (c) {
+          var li = document.createElement('li');
+          li.innerHTML = '<strong></strong> <span></span>';
+          li.querySelector('strong').textContent = c.when;
+          li.querySelector('span').textContent = c.what;
+          cl.appendChild(li);
+        });
+        box.appendChild(cl);
+        wrap.appendChild(box);
+      }
+
       wrap.hidden = false;
       if (note) note.hidden = true;
     }
