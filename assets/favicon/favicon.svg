@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- PLACEHOLDER. A plain lowercase "c", not the final mark — the logo has not
+       been chosen yet. Replace this file, favicon-32.png and apple-touch-icon.png
+       once it is. See assets/logo/README.md. -->
+  <rect width="64" height="64" rx="15" fill="#112337"/>
+  <path d="M44 21.5a15 15 0 1 0 0 21"
+        fill="none" stroke="#F6F1E7" stroke-width="7.5" stroke-linecap="round"/>
+</svg>

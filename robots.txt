@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO before launch: replace with the live address.
+Sitemap: https://covehove.co.uk/sitemap.xml
