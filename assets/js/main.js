@@ -551,13 +551,6 @@
       wrap.hidden = false;
       if (note) note.hidden = true;
     }
-
-    // Timetable PDF
-    var dl = $('#timetable-download');
-    if (dl && CFG.timetablePdf) {
-      dl.setAttribute('href', 'assets/docs/' + CFG.timetablePdf);
-      dl.hidden = false;
-    }
   }
 
   /* ----------------------------------------------------------------------

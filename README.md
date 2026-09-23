@@ -6,8 +6,8 @@ nothing to install — edit a file, save it, and it is live.
 
 | | |
 |---|---|
-| **Live now (preview)** | https://y528s.github.io/covehove.co.uk/ |
-| **Final address** | https://covehove.co.uk/ — waiting on DNS, see `RESTORE-DOMAIN.md` |
+| **Live** | https://covehove.co.uk/ |
+| **Also reachable** | https://y528s.github.io/covehove.co.uk/ (redirects to the domain) |
 | **Repository** | https://github.com/y528s/covehove.co.uk |
 
 **This repository is the source of truth.** Edit files here on GitHub, not in the copy
@@ -156,16 +156,6 @@ It starts empty **on purpose**. The two closures printed on the Canva timetable 
 Rosh Hashana and Yom Kippur — had already passed by the time the site was built, and a
 closure notice for a date that has gone by makes the whole timetable look stale. Add
 the next ones when you know them.
-
-### The timetable PDF
-
-Export the Canva timetable as a PDF, put it in `assets/docs/`, and write the filename
-into `config.js` → `timetablePdf`. The "Download the timetable" button un-hides itself.
-Leave it empty and the button stays hidden.
-
-Keep the PDF for printing and the wall. The page itself uses the data above rather than
-an image of the timetable, because an image cannot be read by a screen reader, cannot be
-searched by Google, and is unreadable on a phone without pinching.
 
 ### Photos
 
@@ -345,18 +335,32 @@ minute. There is no build step and nothing to run.
 
 ### The domain — covehove.co.uk
 
-**covehove.co.uk is registered with Squarespace, and Squarespace is also running its
-DNS** (`nse1-4.squarespacedns.com`). Right now it serves Squarespace's default
-"Coming Soon" parking page — there is no real site there to lose.
+Live on covehove.co.uk, served by GitHub Pages. The `CNAME` file in this folder is what
+tells GitHub which domain to answer for — don't delete it.
 
-Because of that, the custom domain is **temporarily switched off** so the site can be
-previewed at the `github.io` address. The full instructions for switching it on — the
-exact DNS records, the Squarespace quirk about disconnecting the domain first, and how to
-check it worked — are in **`RESTORE-DOMAIN.md`** in this folder.
+The domain is registered with Squarespace, and Squarespace runs its DNS. The records
+were set on 23 September 2026:
 
-One small thing to know while previewing: `404.html` links back to `/`, which is correct
-once the site is on covehove.co.uk but points at the wrong place on the `github.io`
-preview address. It fixes itself when the domain is switched on.
+| Type | Name | Value | What it does |
+|---|---|---|---|
+| A | `@` | `185.199.108.153` | the site |
+| A | `@` | `185.199.109.153` | the site |
+| A | `@` | `185.199.110.153` | the site |
+| A | `@` | `185.199.111.153` | the site |
+| CNAME | `www` | `y528s.github.io` | sends www to the bare domain |
+
+**Leave the email records alone.** The MX pair pointing at `mailgun.org`, and the SPF,
+DMARC and DKIM TXT records, are Squarespace's email forwarding — they are what make
+`hello@covehove.co.uk` work. They live under a separate "Squarespace Email Forwarding"
+preset in the DNS panel and have nothing to do with the website.
+
+To check DNS from a terminal:
+
+```bash
+dig +short covehove.co.uk
+```
+
+You want the four `185.199.…` addresses.
 
 ---|---|---|
 | A | `@` | `185.199.108.153` |

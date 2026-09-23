@@ -192,10 +192,6 @@ window.COVE_CONFIG = {
     { day: "Saturday", time: "10am", name: "Strength", room: "Gym" },
   ],
 
-  // Put the timetable PDF in assets/docs/ and write its filename here.
-  // Leave it empty ("") and the download link stays hidden.
-  timetablePdf: "",
-
   /* --------------------------------------------------------------------
      6b. CHAGIM AND HOLIDAY CLOSURES
      --------------------------------------------------------------------
