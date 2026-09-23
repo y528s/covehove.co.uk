@@ -29,7 +29,8 @@ window.COVE_CONFIG = {
   contact: {
     phone: "01273 750333",          // shown on the page
     phoneHref: "+441273750333",     // what the phone actually dials — no spaces
-    email: "bethan.nash@bnjc.co.uk",
+    // NOTE: the email shown on the page is form.replyToInbox in section 7,
+    // not here — there is only one place to change it.
     addressLine: "29–31 New Church Road",
     addressCity: "Hove",
     addressPostcode: "BN3 4AD",
@@ -161,8 +162,14 @@ window.COVE_CONFIG = {
      -------------------------------------------------------------------- */
   form: {
     accessKey: "",  // TODO before launch: paste the Web3Forms access key here.
-    // Shown on the page as the address people can email directly.
-    replyToInbox: "bethan.nash@bnjc.co.uk",
+    // Shown on the page as the address people can email directly, and the
+    // address the Web3Forms key must be registered against.
+    //
+    // hello@covehove.co.uk is a forwarding address on the covehove.co.uk
+    // domain, configured in Squarespace. It forwards to the people who
+    // actually answer enquiries. Using a covehove.co.uk address rather than a
+    // bnjc.co.uk one matters — Cove has to read as its own organisation.
+    replyToInbox: "hello@covehove.co.uk",
     // How quickly we say we will reply. Confirm with Beth.
     responseTime: "within one working day"
   },

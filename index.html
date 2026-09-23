@@ -69,30 +69,187 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["ExerciseGym", "LocalBusiness"],
-  "name": "Cove Gym & Studio",
-  "description": "A neighbourhood gym and studio on New Church Road, Hove. Open 7am–10pm every day.",
-  "url": "https://covehove.co.uk/",
-  "telephone": "+44 1273 750333",
-  "priceRange": "££",
-  "currenciesAccepted": "GBP",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "29–31 New Church Road",
-    "addressLocality": "Hove",
-    "postalCode": "BN3 4AD",
-    "addressCountry": "GB"
-  },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "07:00",
-    "closes": "22:00"
-  }],
-  "amenityFeature": [
-    { "@type": "LocationFeatureSpecification", "name": "Gym floor", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "Studio classes", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "1-to-1 induction", "value": true }
+  "@graph": [
+    {
+      "@type": ["ExerciseGym", "HealthAndBeautyBusiness", "LocalBusiness"],
+      "@id": "https://covehove.co.uk/#organisation",
+      "name": "Cove Gym & Studio",
+      "alternateName": "Cove",
+      "disambiguatingDescription": "Gym and studio, Hove",
+      "slogan": "You don\u2019t have to be a gym person.",
+      "description": "A neighbourhood gym and studio on New Church Road, Hove. Open 7am\u201310pm every day, with a full class timetable Monday to Saturday, 1-to-1 inductions and no contracts.",
+      "url": "https://covehove.co.uk/",
+      "telephone": "+441273750333",
+      "email": "hello@covehove.co.uk",
+      "image": "https://covehove.co.uk/assets/img/og-image.jpg",
+      "priceRange": "\u00a3\u00a3",
+      "currenciesAccepted": "GBP",
+      "publicAccess": true,
+      "isAccessibleForFree": false,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "29\u201331 New Church Road",
+        "addressLocality": "Hove",
+        "addressRegion": "East Sussex",
+        "postalCode": "BN3 4AD",
+        "addressCountry": "GB"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Hove" },
+        { "@type": "City", "name": "Brighton" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "07:00",
+          "closes": "22:00"
+        }
+      ],
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Gym floor, strength and cardio", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Studio classes", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "1-to-1 induction included", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Small-group training", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "No contract", "value": true }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Memberships",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Under 25s",
+            "description": "Full gym floor 7am\u201310pm, strength and cardio, 1-to-1 induction.",
+            "price": "27.99",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "27.99",
+              "priceCurrency": "GBP",
+              "billingIncrement": 1,
+              "unitCode": "MON"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Gym Only",
+            "description": "Full gym floor 7am\u201310pm, 1-to-1 induction.",
+            "price": "35.00",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "35.00",
+              "priceCurrency": "GBP",
+              "billingIncrement": 1,
+              "unitCode": "MON"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Gym & Classes",
+            "description": "Unlimited gym, the full class timetable, small-group training, 1-to-1 induction.",
+            "price": "59.99",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "59.99",
+              "priceCurrency": "GBP",
+              "billingIncrement": 1,
+              "unitCode": "MON"
+            }
+          }
+        ]
+      },
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Book a free tour",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://covehove.co.uk/#visit",
+          "inLanguage": "en-GB",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        }
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://covehove.co.uk/#website",
+      "url": "https://covehove.co.uk/",
+      "name": "Cove Gym & Studio",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "https://covehove.co.uk/#organisation" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://covehove.co.uk/#webpage",
+      "url": "https://covehove.co.uk/",
+      "name": "Cove Gym & Studio, Hove | Memberships from \u00a327.99",
+      "isPartOf": { "@id": "https://covehove.co.uk/#website" },
+      "about": { "@id": "https://covehove.co.uk/#organisation" },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://covehove.co.uk/#faq",
+      "isPartOf": { "@id": "https://covehove.co.uk/#webpage" },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "I haven\u2019t exercised in years. Is this for me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. That is exactly who we built it for. Every membership starts with a 1-to-1 induction, so you will never be left standing in the middle of the room wondering what to do next."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a contract?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Membership is monthly and you can cancel any time \u2014 just let us know."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the joining fee for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your 1-to-1 induction and getting you set up as a member. It is a one-off \u00a330, paid when you join."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I bring?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Comfortable clothes you can move in, trainers for the gym floor, and a water bottle. Mats and props are already in the studio, so there is nothing to carry for a class."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I look around first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Please do. Book a free tour using the form on this page and we will show you both spaces, answer your questions and leave you to think about it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where are you?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "29\u201331 New Church Road, Hove, BN3 4AD."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
@@ -193,6 +350,10 @@
       <div>
         <span class="eyebrow">Welcome</span>
         <h2 id="welcome-title">A place to move, not a place to prove anything.</h2>
+        <figure class="ethos__media">
+          <img src="assets/img/induction.jpg" width="557" height="698" loading="lazy" decoding="async"
+               alt="A Cove trainer talking a member through a seated stretch on the mat.">
+        </figure>
       </div>
       <div class="ethos">
         <p class="lead">
@@ -425,6 +586,10 @@
       <div class="grid grid--2">
 
         <article class="space-card">
+          <figure class="space-card__media">
+            <img src="assets/img/gym-floor.jpg" width="556" height="371" loading="lazy" decoding="async"
+                 alt="Members training with free weights on the gym floor at Cove.">
+          </figure>
           <h3>The Gym</h3>
           <p>
             A little more active. Strength kit, cardio and free weights, with space to
@@ -439,6 +604,10 @@
         </article>
 
         <article class="space-card">
+          <figure class="space-card__media">
+            <img src="assets/img/studio-space.jpg" width="556" height="371" loading="lazy" decoding="async"
+                 alt="The matted studio area at Cove, with kettlebells, foam rollers and resistance bands.">
+          </figure>
           <h3>The Studio</h3>
           <p>
             Calmer. Yoga, Pilates and mobility in a warm room with the lights down.
@@ -675,7 +844,7 @@
             </div>
             <div>
               <dt>Or email</dt>
-              <dd><a href="mailto:bethan.nash@bnjc.co.uk" data-cove-mail><span data-cove="form.replyToInbox">bethan.nash@bnjc.co.uk</span></a></dd>
+              <dd><a href="mailto:hello@covehove.co.uk" data-cove-mail><span data-cove="form.replyToInbox">hello@covehove.co.uk</span></a></dd>
             </div>
             <div>
               <dt>Opening hours</dt>
@@ -737,7 +906,7 @@
           </div>
           <div>
             <dt>Email</dt>
-            <dd><a href="mailto:bethan.nash@bnjc.co.uk" data-cove-mail><span data-cove="form.replyToInbox">bethan.nash@bnjc.co.uk</span></a></dd>
+            <dd><a href="mailto:hello@covehove.co.uk" data-cove-mail><span data-cove="form.replyToInbox">hello@covehove.co.uk</span></a></dd>
           </div>
         </dl>
 
@@ -813,12 +982,26 @@
 
         <details>
           <summary>
+            What should I bring?
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <div class="faq__answer">
+            <p>
+              Comfortable clothes you can move in, trainers for the gym floor, and a water
+              bottle. Mats and props are already in the studio, so there is nothing to carry
+              for a class.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
             Can I look around first?
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </summary>
           <div class="faq__answer">
             <p>
-              Please do. Book a free tour using the form above and we will show you both
+              Please do. Book a free tour using the form on this page and we will show you both
               spaces, answer your questions and leave you to think about it.
             </p>
           </div>
@@ -871,7 +1054,7 @@
           <span data-cove="contact.addressCity">Hove</span>
           <span data-cove="contact.addressPostcode">BN3 4AD</span><br>
           <a href="tel:+441273750333" data-cove-tel><span data-cove="contact.phone">01273 750333</span></a><br>
-          <a href="mailto:bethan.nash@bnjc.co.uk" data-cove-mail><span data-cove="form.replyToInbox">bethan.nash@bnjc.co.uk</span></a>
+          <a href="mailto:hello@covehove.co.uk" data-cove-mail><span data-cove="form.replyToInbox">hello@covehove.co.uk</span></a>
         </address>
       </div>
 
