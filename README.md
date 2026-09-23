@@ -122,6 +122,28 @@ columns on a desktop, two on a tablet and one on a phone.
 If you empty the list entirely, the timetable disappears and the site falls back to
 "ask us for this week's timetable", so nothing ever looks broken.
 
+### Filtering and day tabs
+
+Above the timetable there are two controls, both built by JavaScript so that with
+JavaScript off the whole timetable simply shows, unfiltered.
+
+**Kind of class** — Everything, Yoga, Pilates, Strength, Conditioning, Mind & mobility.
+Classes are sorted into those groups by matching words in their name, so a new class is
+filed automatically: anything with "Yoga" or "Flow" in it counts as Yoga, "Pilates" or
+"Spine" as Pilates, and so on. The rules live in `assets/js/main.js`, in `CLASS_FAMILIES`.
+A class that matches nothing still appears under Everything — it just has no group.
+
+We deliberately did **not** put a pill on the page for each of the fifteen class names.
+Seven of them run only once or twice a week, so most of those buttons would return a
+single result, and fifteen buttons above the timetable is more to read than the timetable.
+
+**Day tabs** appear on screens narrower than 640px only, where one column of 39 classes is
+a long scroll. They open on today. On a desktop every day shows side by side instead.
+
+The two work together: if you are on Saturday and then filter to Yoga — which Saturday
+does not have — it moves you to a day that does, rather than showing you an empty screen.
+Days with nothing under the current filter are greyed out.
+
 ### Holiday closures
 
 `config.js` → `closures`. Shown as a navy notice under the timetable.

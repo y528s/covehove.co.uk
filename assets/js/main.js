@@ -282,6 +282,26 @@
 
   var DAY_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+  /* Groups the timetable filter offers. A class is matched on its name, first
+     rule wins, so "Strength & Conditioning" lands under Strength. Anything
+     that matches nothing still shows under "Everything" — it just gets no
+     group of its own. Add a new class and it is sorted automatically; only
+     add a rule here if a genuinely new kind of class appears. */
+  var CLASS_FAMILIES = [
+    { id: 'yoga',     label: 'Yoga',            match: /yoga|flow/i },
+    { id: 'pilates',  label: 'Pilates',         match: /pilates|spine/i },
+    { id: 'strength', label: 'Strength',        match: /strength/i },
+    { id: 'cardio',   label: 'Conditioning',    match: /burn|circuit|core|conditioning/i },
+    { id: 'mind',     label: 'Mind & mobility', match: /meditation|move better|mobility|stretch/i }
+  ];
+
+  function familyOf(name) {
+    for (var i = 0; i < CLASS_FAMILIES.length; i++) {
+      if (CLASS_FAMILIES[i].match.test(name)) return CLASS_FAMILIES[i].id;
+    }
+    return '';
+  }
+
   function initClasses() {
     // New classes — only shown once showNewClasses is true in config.js
     var newWrap = $('#new-classes');
@@ -313,7 +333,6 @@
         if (!byDay[r.day]) byDay[r.day] = [];
         byDay[r.day].push(r);
       });
-
       var days = DAY_ORDER.filter(function (d) { return byDay[d]; });
 
       var heading = document.createElement('h3');
@@ -326,12 +345,69 @@
       intro.textContent = 'The same every week. Classes are in the Gym or the Studio — it says which.';
       wrap.appendChild(intro);
 
+      /* --- Controls ----------------------------------------------------
+         Both the kind filter and the day tabs are built here rather than in
+         index.html, so that with JavaScript off the whole timetable simply
+         shows, unfiltered. Day tabs only appear on narrow screens, where 39
+         classes in one column is a long scroll. ------------------------- */
+
+      var present = {};
+      rows.forEach(function (r) { present[familyOf(r.name)] = true; });
+      var families = CLASS_FAMILIES.filter(function (f) { return present[f.id]; });
+
+      var bar = document.createElement('div');
+      bar.className = 'tt-filter';
+      bar.setAttribute('role', 'group');
+      bar.setAttribute('aria-label', 'Filter the timetable by kind of class');
+
+      var famButtons = [];
+      function makeFilter(id, label) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'tt-filter__btn';
+        b.textContent = label;
+        b.setAttribute('data-filter', id);
+        b.setAttribute('aria-pressed', id === 'all' ? 'true' : 'false');
+        bar.appendChild(b);
+        famButtons.push(b);
+      }
+      makeFilter('all', 'Everything');
+      families.forEach(function (f) { makeFilter(f.id, f.label); });
+      wrap.appendChild(bar);
+
+      var dayBar = document.createElement('div');
+      dayBar.className = 'tt-daybar';
+      dayBar.setAttribute('role', 'group');
+      dayBar.setAttribute('aria-label', 'Choose a day');
+      var dayButtons = [];
+      days.forEach(function (d) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'tt-daybar__btn';
+        b.setAttribute('data-day', d);
+        b.setAttribute('aria-pressed', 'false');
+        b.innerHTML = '<span aria-hidden="true"></span><span class="visually-hidden"></span>';
+        b.children[0].textContent = d.slice(0, 3);
+        b.children[1].textContent = d;
+        dayBar.appendChild(b);
+        dayButtons.push(b);
+      });
+      wrap.appendChild(dayBar);
+
+      var count = document.createElement('p');
+      count.className = 'tt-filter__count muted small';
+      count.setAttribute('role', 'status');
+      count.setAttribute('aria-live', 'polite');
+      wrap.appendChild(count);
+
+      // --- The grid itself ---------------------------------------------
       var grid = document.createElement('div');
       grid.className = 'timetable-grid';
 
       days.forEach(function (day) {
         var col = document.createElement('section');
         col.className = 'tt-day';
+        col.setAttribute('data-day', day);
 
         var h = document.createElement('h4');
         h.className = 'tt-day__name';
@@ -344,6 +420,7 @@
         byDay[day].forEach(function (r) {
           var li = document.createElement('li');
           li.className = 'tt-item';
+          li.setAttribute('data-family', familyOf(r.name));
           li.innerHTML = '<span class="tt-time"></span>' +
                          '<span class="tt-name"></span>' +
                          '<span class="room"></span>';
@@ -358,6 +435,95 @@
       });
 
       wrap.appendChild(grid);
+
+      // --- State and rendering ------------------------------------------
+      var narrowQuery = window.matchMedia('(max-width: 639px)');
+      var state = { family: 'all', day: null };
+
+      function todayName() {
+        var d = DAY_ORDER[(new Date().getDay() + 6) % 7]; // JS weeks start Sunday
+        return days.indexOf(d) > -1 ? d : days[0];
+      }
+
+      function render() {
+        var total = 0;
+
+        $$('.tt-day', grid).forEach(function (dayEl) {
+          var dayName = dayEl.getAttribute('data-day');
+          var visibleHere = 0;
+
+          $$('.tt-item', dayEl).forEach(function (item) {
+            var keep = state.family === 'all' ||
+                       item.getAttribute('data-family') === state.family;
+            item.hidden = !keep;
+            if (keep) visibleHere++;
+          });
+
+          var dayWanted = !state.day || state.day === dayName;
+          dayEl.hidden = !(visibleHere > 0 && dayWanted);
+          if (dayWanted) total += visibleHere;
+        });
+
+        famButtons.forEach(function (b) {
+          b.setAttribute('aria-pressed',
+            b.getAttribute('data-filter') === state.family ? 'true' : 'false');
+        });
+
+        dayButtons.forEach(function (b) {
+          var d = b.getAttribute('data-day');
+          b.setAttribute('aria-pressed', state.day === d ? 'true' : 'false');
+          // grey out a day that has nothing under the current filter
+          var dayEl = grid.querySelector('.tt-day[data-day="' + d + '"]');
+          var has = dayEl && $$('.tt-item', dayEl).some(function (i) { return !i.hidden; });
+          b.disabled = !has;
+        });
+
+        var noun = total === 1 ? ' class' : ' classes';
+        count.textContent = state.day
+          ? total + noun + ' on ' + state.day + '.'
+          : total + noun + ' a week.';
+      }
+
+      function syncToWidth() {
+        if (narrowQuery.matches) {
+          if (!state.day) state.day = todayName();
+        } else {
+          state.day = null;
+        }
+        render();
+      }
+
+      famButtons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          state.family = b.getAttribute('data-filter');
+          // if the chosen day has nothing left, move to one that has
+          if (state.day) {
+            var el = grid.querySelector('.tt-day[data-day="' + state.day + '"]');
+            render();
+            if (el && el.hidden) {
+              var firstOpen = days.filter(function (d) {
+                var dd = grid.querySelector('.tt-day[data-day="' + d + '"]');
+                return dd && $$('.tt-item', dd).some(function (i) { return !i.hidden; });
+              })[0];
+              if (firstOpen) { state.day = firstOpen; }
+            }
+          }
+          render();
+          if (state.family !== 'all') track('filter_classes', { class_family: state.family });
+        });
+      });
+
+      dayButtons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          state.day = b.getAttribute('data-day');
+          render();
+        });
+      });
+
+      if (narrowQuery.addEventListener) narrowQuery.addEventListener('change', syncToWidth);
+      else if (narrowQuery.addListener) narrowQuery.addListener(syncToWidth);
+
+      syncToWidth();
 
       // Holiday closures, if any are listed
       var closures = CFG.closures || [];
