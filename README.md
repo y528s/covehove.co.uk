@@ -4,6 +4,15 @@ A single-page site for **Cove Gym & Studio, Hove**, running while the full site 
 built. Plain HTML, CSS and a little vanilla JavaScript. No framework, no build step,
 nothing to install — edit a file, save it, and it is live.
 
+| | |
+|---|---|
+| **Live now (preview)** | https://y528s.github.io/covehove.co.uk/ |
+| **Final address** | https://covehove.co.uk/ — waiting on DNS, see `RESTORE-DOMAIN.md` |
+| **Repository** | https://github.com/y528s/covehove.co.uk |
+
+**This repository is the source of truth.** Edit files here on GitHub, not in the copy
+in Google Drive — that copy was the handover and will go stale.
+
 - **Home:** `index.html` — everything is on this one page
 - **Also:** `privacy.html`, `thanks.html` (form fallback), `404.html`
 - **Everything you will want to change:** `config.js`
@@ -279,25 +288,32 @@ form's hidden `redirect`), `privacy.html` (canonical), `sitemap.xml` and `robots
 
 ## Publishing it
 
-**GitHub Pages**, from the `main` branch, root folder.
+**Already done.** GitHub Pages serves this repository from the `main` branch, root
+folder, at https://y528s.github.io/covehove.co.uk/ over HTTPS.
 
-1. Create a repository and push these files to it. On a free GitHub plan the repository
-   must be **public** for Pages to work — that is fine, there are no secrets here. The
-   form key and the GA ID are both meant to be visible.
-2. *Settings → Pages* → Source: **Deploy from a branch**, Branch: `main`, folder: `/ (root)`.
-3. Wait a minute, then open the `https://<account>.github.io/<repo>/` address it gives you.
-4. Tick **Enforce HTTPS**.
+The repository is public, which it has to be for Pages on a free plan. There are no
+secrets in it — the Web3Forms key and the GA Measurement ID are both designed to be
+visible in front-end code.
 
-Cloudflare Pages and Netlify both work the same way if you would rather use those.
+To publish a change: edit the file on GitHub and commit. Pages rebuilds in about a
+minute. There is no build step and nothing to run.
 
 ### The domain — covehove.co.uk
 
-The `CNAME` file is already in this folder, so GitHub knows the domain. What is left is DNS.
+**covehove.co.uk is registered with Squarespace, and Squarespace is also running its
+DNS** (`nse1-4.squarespacedns.com`). Right now it serves Squarespace's default
+"Coming Soon" parking page — there is no real site there to lose.
 
-At whoever holds the DNS for covehove.co.uk, add **five records**:
+Because of that, the custom domain is **temporarily switched off** so the site can be
+previewed at the `github.io` address. The full instructions for switching it on — the
+exact DNS records, the Squarespace quirk about disconnecting the domain first, and how to
+check it worked — are in **`RESTORE-DOMAIN.md`** in this folder.
 
-| Type | Name | Value |
-|---|---|---|
+One small thing to know while previewing: `404.html` links back to `/`, which is correct
+once the site is on covehove.co.uk but points at the wrong place on the `github.io`
+preview address. It fixes itself when the domain is switched on.
+
+---|---|---|
 | A | `@` | `185.199.108.153` |
 | A | `@` | `185.199.109.153` |
 | A | `@` | `185.199.110.153` |
