@@ -332,16 +332,10 @@
         </p>
       </div>
 
-      <!-- TODO: real photo. Replace this whole block with, for example:
-           <picture>
-             <source srcset="assets/img/hero.webp" type="image/webp">
-             <img src="assets/img/hero.jpg" width="1200" height="960" loading="eager"
-                  alt="Two members stretching in the studio at Cove, Hove.">
-           </picture>
-           Until then this is a plain brand panel, not a stand-in photograph. -->
       <div class="media media--hero">
-        <img src="assets/img/placeholder-hero.svg" alt="" aria-hidden="true"
-             width="1200" height="960" decoding="async">
+        <img src="assets/img/hero-entrance.jpg" width="1200" height="960"
+             fetchpriority="high" decoding="async"
+             alt="Open glass doors onto a light studio, with plants either side of the entrance.">
       </div>
 
     </div>
@@ -356,8 +350,8 @@
       <div>
         <span class="eyebrow">Welcome</span>
         <h2 id="welcome-title">A place to move, not a place to prove anything.</h2>
-        <figure class="ethos__media">
-          <img src="assets/img/induction.jpg" width="557" height="698" loading="lazy" decoding="async"
+        <figure class="ethos__media photo--warm">
+          <img src="assets/img/induction.jpg" width="400" height="560" loading="lazy" decoding="async"
                alt="A Cove trainer talking a member through a seated stretch on the mat.">
         </figure>
       </div>
@@ -592,7 +586,7 @@
       <div class="grid grid--2">
 
         <article class="space-card">
-          <figure class="space-card__media">
+          <figure class="space-card__media photo--warm">
             <img src="assets/img/gym-floor.jpg" width="556" height="371" loading="lazy" decoding="async"
                  alt="Members training with free weights on the gym floor at Cove.">
           </figure>
@@ -611,8 +605,8 @@
 
         <article class="space-card">
           <figure class="space-card__media">
-            <img src="assets/img/studio-space.jpg" width="556" height="371" loading="lazy" decoding="async"
-                 alt="The matted studio area at Cove, with kettlebells, foam rollers and resistance bands.">
+            <img src="assets/img/studio-class.jpg" width="800" height="533" loading="lazy" decoding="async"
+                 alt="A small yoga class in the studio, sitting cross-legged and stretching to one side.">
           </figure>
           <h3>The Studio</h3>
           <p>
@@ -666,6 +660,11 @@
         <li class="tag">Move Better</li>
         <li class="tag">Meditation</li>
       </ul>
+
+      <figure class="classes__media">
+        <img src="assets/img/classes-movement.jpg" width="1200" height="800" loading="lazy" decoding="async"
+             alt="Toddlers and their grown-ups dancing with coloured scarves in the studio.">
+      </figure>
 
       <!-- New classes. Hidden until showNewClasses is set to true in config.js. -->
       <div id="new-classes" hidden>
@@ -1104,9 +1103,8 @@
      aria-labelledby="consent-title" aria-describedby="consent-text" hidden>
   <h2 id="consent-title">Can we count your visit?</h2>
   <p id="consent-text">
-    We would like to use Google Analytics to see which parts of this page people
-    use. It sets a cookie. Nothing else on this site tracks you, and we do not run
-    ads. You can change your mind any time from the footer.
+    We use Google Analytics to see which parts of this page get used. It sets a
+    cookie. Nothing else here tracks you and we don’t run ads.
   </p>
   <div class="btn-row">
     <button class="btn btn--primary" type="button" id="consent-accept">Accept analytics</button>
