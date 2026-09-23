@@ -728,10 +728,10 @@
           <form id="enquiry-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
 
             <!-- Web3Forms plumbing. The access key is public by design. -->
-            <!-- TODO before launch: paste the Web3Forms access key here AS WELL AS in
-                 config.js. This copy is only used by visitors who have JavaScript
-                 switched off; JavaScript overwrites it from config.js otherwise. -->
-            <input type="hidden" name="access_key" id="w3f-key" value="">
+            <!-- The same Web3Forms key as config.js. This copy is only used by
+                 visitors with JavaScript switched off; otherwise JavaScript
+                 overwrites it from config.js. Change it in both places. -->
+            <input type="hidden" name="access_key" id="w3f-key" value="4ed4085c-516a-48c1-819b-f0c02e4ded51">
             <input type="hidden" name="subject" id="w3f-subject" value="Cove website enquiry">
             <input type="hidden" name="from_name" value="Cove website">
             <input type="hidden" name="replyto" id="w3f-replyto" value="">

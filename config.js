@@ -217,7 +217,10 @@ window.COVE_CONFIG = {
      This key is safe to have in a public repository.
      -------------------------------------------------------------------- */
   form: {
-    accessKey: "",  // TODO before launch: paste the Web3Forms access key here.
+    // Web3Forms access key for hello@covehove.co.uk, created 23 September 2026.
+    // This is a public key by design — it only ever forwards to the address it
+    // was created for, which is why it is safe in a public repository.
+    accessKey: "4ed4085c-516a-48c1-819b-f0c02e4ded51",
     // Shown on the page as the address people can email directly, and the
     // address the Web3Forms key must be registered against.
     //
