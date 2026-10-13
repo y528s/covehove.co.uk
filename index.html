@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Cove Gym &amp; Studio, Hove | Memberships from £27.99</title>
-<meta name="description" content="A neighbourhood gym and studio on New Church Road, Hove. Open 7am–10pm every day. Classes, 1-to-1 inductions, no contracts. Book a free tour.">
+<meta name="description" content="A neighbourhood gym and studio on New Church Road, Hove. Open seven days a week. Classes, an induction with a personal trainer, no contracts. Book a free tour.">
 
 <link rel="canonical" href="https://covehove.co.uk/">
 
@@ -77,7 +77,7 @@
       "alternateName": "Cove",
       "disambiguatingDescription": "Gym and studio, Hove",
       "slogan": "You don\u2019t have to be a gym person.",
-      "description": "A neighbourhood gym and studio on New Church Road, Hove. Open 7am\u201310pm every day, with a full class timetable Monday to Saturday, 1-to-1 inductions and no contracts.",
+      "description": "A neighbourhood gym and studio on New Church Road, Hove. Open seven days a week, with a full class timetable Monday to Saturday, an induction with a personal trainer, and no contracts.",
       "url": "https://covehove.co.uk/",
       "telephone": "+441273750333",
       "email": "hello@covehove.co.uk",
@@ -107,15 +107,21 @@
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
           "opens": "07:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday","Sunday"],
+          "opens": "08:00",
           "closes": "22:00"
         }
       ],
       "amenityFeature": [
         { "@type": "LocationFeatureSpecification", "name": "Gym floor, strength and cardio", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Studio classes", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "1-to-1 induction included", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Induction with a personal trainer included", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Small-group training", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "No contract", "value": true }
       ],
@@ -126,7 +132,7 @@
           {
             "@type": "Offer",
             "name": "Under 25s",
-            "description": "Full gym floor 7am\u201310pm, strength and cardio, 1-to-1 induction.",
+            "description": "Full gym floor, strength and cardio, induction with a personal trainer.",
             "price": "27.99",
             "priceCurrency": "GBP",
             "availability": "https://schema.org/InStock",
@@ -141,7 +147,7 @@
           {
             "@type": "Offer",
             "name": "Gym Only",
-            "description": "Full gym floor 7am\u201310pm, 1-to-1 induction.",
+            "description": "Full gym floor, induction with a personal trainer.",
             "price": "35.00",
             "priceCurrency": "GBP",
             "availability": "https://schema.org/InStock",
@@ -156,7 +162,7 @@
           {
             "@type": "Offer",
             "name": "Gym & Classes",
-            "description": "Unlimited gym, the full class timetable, small-group training, 1-to-1 induction.",
+            "description": "Unlimited gym, the full class timetable, small-group training, induction with a personal trainer.",
             "price": "59.99",
             "priceCurrency": "GBP",
             "availability": "https://schema.org/InStock",
@@ -211,7 +217,7 @@
           "name": "I haven\u2019t exercised in years. Is this for me?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. That is exactly who we built it for. Every membership starts with a 1-to-1 induction, so you will never be left standing in the middle of the room wondering what to do next."
+            "text": "Yes. That is exactly who we built it for. Every membership starts with an induction with a personal trainer, so you will never be left standing in the middle of the room wondering what to do next."
           }
         },
         {
@@ -227,7 +233,7 @@
           "name": "What is the joining fee for?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Your 1-to-1 induction and getting you set up as a member. It is a one-off \u00a330, paid when you join."
+            "text": "Your induction with a personal trainer and getting you set up as a member. It is a one-off \u00a330, paid when you join."
           }
         },
         {
@@ -317,8 +323,8 @@
         <span class="eyebrow">Gym &amp; Studio · Hove</span>
         <h1>You don’t have to be a <em>gym person.</em></h1>
         <p class="hero__lead">
-          A neighbourhood gym and studio on New Church Road, Hove. Open <span data-cove="hours.gymDays">every day</span>,
-          <span data-cove="hours.gym">7am–10pm</span>, for every level.
+          A neighbourhood gym and studio on New Church Road, Hove. Open seven days a
+          week, for every level.
         </p>
 
         <div class="btn-row">
@@ -328,14 +334,16 @@
 
         <p class="hero__note">
           Memberships from <span data-cove="lowestPrice">£27.99</span> a month.
-          Every one starts with a 1-to-1 induction.
+          Every one starts with an induction with a personal trainer.
         </p>
       </div>
 
+      <!-- TODO: replace with a photograph of the gym floor. Timmo has asked for a
+           gym-focused hero and is shooting new images; until then this is a plain
+           brand panel rather than a studio photo that works against the point. -->
       <div class="media media--hero">
-        <img src="assets/img/hero-studio.jpg" width="1024" height="819"
-             fetchpriority="high" decoding="async"
-             alt="Three people sitting cross-legged on mats in the studio, stretching to one side.">
+        <img src="assets/img/placeholder-hero.svg" alt="" aria-hidden="true"
+             width="1200" height="960" decoding="async">
       </div>
 
     </div>
@@ -350,10 +358,6 @@
       <div>
         <span class="eyebrow">Welcome</span>
         <h2 id="welcome-title">A place to move, not a place to prove anything.</h2>
-        <figure class="ethos__media photo--warm">
-          <img src="assets/img/induction.jpg" width="400" height="560" loading="lazy" decoding="async"
-               alt="A Cove trainer talking a member through a seated stretch on the mat.">
-        </figure>
       </div>
       <div class="ethos">
         <p class="lead">
@@ -363,7 +367,7 @@
           close to home to feel a bit better in.
         </p>
         <p>
-          Every membership starts with a 1-to-1 induction with one of our trainers.
+          Every membership starts with an induction with a personal trainer.
           You’ll be shown around, talked through the kit, and between you you’ll work
           out what a good week actually looks like for you. Nobody is left to figure
           it out on their own.
@@ -387,8 +391,8 @@
         <span class="eyebrow">Memberships</span>
         <h2 id="memberships-title">Simple pricing. No contracts.</h2>
         <p>
-          One joining fee of <span data-cove="joiningFee">£30</span> covers your 1-to-1
-          induction and getting you set up. After that it’s month by month.
+          One joining fee of <span data-cove="joiningFee">£30</span> covers your induction
+          with a personal trainer and getting you set up. After that it’s month by month.
         </p>
       </div>
 
@@ -406,7 +410,7 @@
           <ul class="plan__features">
             <li>Full gym floor, 7am–10pm</li>
             <li>Strength and cardio</li>
-            <li>1-to-1 induction</li>
+            <li>Induction with a personal trainer</li>
           </ul>
           <div class="plan__cta">
             <a class="btn btn--secondary btn--block" href="#visit">Join</a>
@@ -422,7 +426,7 @@
           <p class="plan__fee">Plus a £30 joining fee</p>
           <ul class="plan__features">
             <li>Full gym floor, 7am–10pm</li>
-            <li>1-to-1 induction</li>
+            <li>Induction with a personal trainer</li>
           </ul>
           <div class="plan__cta">
             <a class="btn btn--secondary btn--block" href="#visit">Join</a>
@@ -441,7 +445,7 @@
             <li>Unlimited gym</li>
             <li>The full class timetable</li>
             <li>Small-group training</li>
-            <li>1-to-1 induction</li>
+            <li>Induction with a personal trainer</li>
           </ul>
           <div class="plan__cta">
             <a class="btn btn--primary btn--block" href="#visit">Join</a>
@@ -461,7 +465,7 @@
           <ul class="plan__features">
             <li>For people living on site</li>
             <li>Full gym floor, 7am–10pm</li>
-            <li>1-to-1 induction</li>
+            <li>Induction with a personal trainer</li>
           </ul>
           <div class="plan__cta">
             <a class="btn btn--secondary btn--block" href="#visit">Join</a>
@@ -478,7 +482,7 @@
           <ul class="plan__features">
             <li>For members who observe Shabbat</li>
             <li>Full gym floor</li>
-            <li>1-to-1 induction</li>
+            <li>Induction with a personal trainer</li>
           </ul>
           <div class="plan__cta">
             <a class="btn btn--secondary btn--block" href="#visit">Join</a>
@@ -511,7 +515,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><path d="M17 8.5h4M19 6.5v4"/></svg>
           </span>
           <div>
-            <h3>A 1-to-1 induction</h3>
+            <h3>An induction with a personal trainer</h3>
             <p>An hour with a Cove trainer before you start, at your pace, on your terms.</p>
           </div>
         </li>
@@ -522,7 +526,7 @@
           </span>
           <div>
             <h3>The full gym floor</h3>
-            <p>Strength and cardio kit with room to breathe, open <span data-cove="hours.gym">7am–10pm</span>, <span data-cove="hours.gymDays">every day</span>.</p>
+            <p>Strength and cardio kit with room to breathe. <span data-cove="hoursSummary">Mon–Fri 7am–10pm, Sat–Sun 8am–10pm</span>.</p>
           </div>
         </li>
 
@@ -586,10 +590,6 @@
       <div class="grid grid--2">
 
         <article class="space-card">
-          <figure class="space-card__media photo--warm">
-            <img src="assets/img/gym-floor.jpg" width="556" height="371" loading="lazy" decoding="async"
-                 alt="Members training with free weights on the gym floor at Cove.">
-          </figure>
           <h3>The Gym</h3>
           <p>
             A little more active. Strength kit, cardio and free weights, with space to
@@ -604,10 +604,6 @@
         </article>
 
         <article class="space-card">
-          <figure class="space-card__media photo--warm">
-            <img src="assets/img/studio-space.jpg" width="556" height="371" loading="lazy" decoding="async"
-                 alt="The matted studio area at Cove, with mats, foam rollers and resistance bands to hand.">
-          </figure>
           <h3>The Studio</h3>
           <p>
             Calmer. Yoga, Pilates and mobility in a warm room with the lights down.
@@ -851,7 +847,7 @@
             <div>
               <dt>Opening hours</dt>
               <dd>
-                Gym <span data-cove="hours.gym">7am–10pm</span>, <span data-cove="hours.gymDays">every day</span>.<br>
+                Gym <span data-cove="hoursSummary">Mon–Fri 7am–10pm, Sat–Sun 8am–10pm</span>.<br>
                 Classes <span data-cove="hours.classes">Monday to Saturday</span>.
               </dd>
             </div>
@@ -898,7 +894,7 @@
           <div>
             <dt>Opening hours</dt>
             <dd>
-              Gym floor <span data-cove="hours.gym">7am–10pm</span>, <span data-cove="hours.gymDays">every day</span>.<br>
+              Gym floor <span data-cove="hoursSummary">Mon–Fri 7am–10pm, Sat–Sun 8am–10pm</span>.<br>
               Classes <span data-cove="hours.classes">Monday to Saturday</span>.
             </dd>
           </div>
@@ -964,8 +960,8 @@
           <div class="faq__answer">
             <p>
               Yes. That is exactly who we built it for. Every membership starts with a
-              1-to-1 induction, so you will never be left standing in the middle of the
-              room wondering what to do next.
+              induction with a personal trainer, so you will never be left standing in
+              the middle of the room wondering what to do next.
             </p>
           </div>
         </details>
@@ -987,7 +983,7 @@
           </summary>
           <div class="faq__answer">
             <p>
-              Your 1-to-1 induction and getting you set up as a member. It is a one-off
+              Your induction with a personal trainer and getting you set up as a member. It is a one-off
               <span data-cove="joiningFee">£30</span>, paid when you join.
             </p>
           </div>

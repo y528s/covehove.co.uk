@@ -76,7 +76,11 @@
       'joiningFee': CFG.joiningFee,
       // The privacy notice falls back to the trading name until the legal
       // entity is confirmed and filled in in config.js.
-      'legalEntityDisplay': CFG.legalEntity || 'Cove Gym & Studio'
+      'legalEntityDisplay': CFG.legalEntity || 'Cove Gym & Studio',
+      // One line covering both sets of opening hours, built from the two
+      // values in config so they can never drift apart.
+      'hoursSummary': 'Mon–Fri ' + (get('hours.gymWeekdays') || '') +
+                      ', Sat–Sun ' + (get('hours.gymWeekend') || '')
     };
 
     $$('[data-cove]').forEach(function (el) {

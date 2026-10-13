@@ -96,9 +96,24 @@ in `config.js` and it appears — on the pricing cards and in the form's dropdow
 
 ### Hours, phone, address, email
 
-All in `config.js`, sections 2 and 3. The phone number appears twice in that file:
-`phone` is what people read, `phoneHref` is what the phone actually dials (no spaces,
-international format: `+441273750333`).
+All in `config.js`. The gym floor opens an hour later at weekends, so hours are two
+values:
+
+```js
+gymWeekdays: "7am–10pm",   // Monday to Friday
+gymWeekend:  "8am–10pm",   // Saturday and Sunday
+```
+
+The site builds the line **"Mon–Fri 7am–10pm, Sat–Sun 8am–10pm"** from those two
+wherever opening hours appear, so they can't drift apart. Change them in one place.
+
+⚠️ **One thing lives outside config:** the machine-readable hours Google reads are in
+`index.html`, in the JSON-LD block near the top — search for `openingHoursSpecification`.
+There are two entries, weekdays and weekend. If you change the times above, change those
+too, or Google will show the old hours.
+
+The phone number appears twice in config: `phone` is what people read, `phoneHref` is
+what the phone actually dials (no spaces, international format: `+441273750333`).
 
 ### The classes timetable
 
@@ -159,25 +174,48 @@ the next ones when you know them.
 
 ### Photos
 
-The hero and the address card currently use plain brand panels
-(`assets/img/placeholder-hero.svg`, `assets/img/placeholder-map.svg`). They are not
-pretending to be photographs — they are patterns in the Cove colours.
+**There are currently no photographs of the gym on the site.** The ones that were there
+have been taken down at Timmo's request — they showed Sam and Andy, and we don't have
+their say-so to use them.
 
-To put a real photo in the hero, open `index.html`, find `TODO: real photo`, and replace
-the `<div class="media media--hero">` block with:
+What's there instead:
+
+| Where | What it is |
+|---|---|
+| Hero | A plain brand panel (`placeholder-hero.svg`) — navy with the Cove curves. Not pretending to be a photo. |
+| The Gym / The Studio cards | No image. Text and tags only. |
+| Classes | `classes-movement.jpg` — a movement class. Library image, not Cove. |
+
+**Timmo is shooting replacements on a DSLR.** What the site needs, in priority order:
+
+1. **The gym floor, landscape, 1600px wide or more.** This is the hero and the most
+   important shot. Gym membership is the core offering and the hero should say so. Wide
+   enough to show the room, people in it if they're happy to be photographed, warm light
+   if you can get it.
+2. **The Gym card** — strength and cardio kit, landscape, around 3:2.
+3. **The Studio card** — the matted studio, landscape, around 3:2. Calm, lights down.
+4. **The welcome section** — a trainer working with a member, portrait, around 4:5.
+   This is the one that carries "an induction with a personal trainer".
+
+Shoot landscape unless noted, keep them warm rather than cool-lit, and get written
+consent from anyone recognisable before they go up.
+
+To add one: save it into `assets/img/`, then in `index.html` replace the relevant block.
+For the hero, swap the `<img>` inside `<div class="media media--hero">` for:
 
 ```html
-<div class="media media--hero">
-  <picture>
-    <source srcset="assets/img/hero.webp" type="image/webp">
-    <img src="assets/img/hero.jpg" width="1200" height="960" loading="eager"
-         alt="Two members stretching in the studio at Cove, Hove.">
-  </picture>
-</div>
+<picture>
+  <source srcset="assets/img/hero.webp" type="image/webp">
+  <img src="assets/img/hero.jpg" width="1600" height="1280" fetchpriority="high"
+       alt="Members training on the gym floor at Cove.">
+</picture>
 ```
 
-Save both a `.webp` and a `.jpg`, around 1200px wide. Always write real alt text
-describing what is in the picture — it is what blind visitors hear, and Google reads it too.
+Always write real alt text describing what's in the picture — it's what blind visitors
+hear, and Google reads it too.
+
+The CSS for photo slots (`.ethos__media`, `.space-card__media`, `.photo--warm`) is still
+in `styles.css`, unused for now, ready for the new images.
 
 ### The logo
 
