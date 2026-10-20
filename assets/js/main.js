@@ -420,9 +420,14 @@
           var li = document.createElement('li');
           li.className = 'tt-item';
           li.setAttribute('data-family', familyOf(r.name));
+          // Drives the colour of the block, matching the printed timetable:
+          // Gym classes on warm sand, Studio classes on sage.
+          li.setAttribute('data-room', r.room || '');
           li.innerHTML = '<span class="tt-time"></span>' +
-                         '<span class="tt-name"></span>' +
-                         '<span class="room"></span>';
+                         '<span class="tt-class">' +
+                           '<span class="tt-name"></span>' +
+                           '<span class="room"></span>' +
+                         '</span>';
           $('.tt-time', li).textContent = r.time;
           $('.tt-name', li).textContent = r.name;
           $('.room', li).textContent = r.room || '';
@@ -840,27 +845,37 @@
      ---------------------------------------------------------------------- */
 
   var PREVIEW_FONTS = {
-    // Fraunces has a WONK axis that produces its quirky S and J. Setting it
-    // to 0 keeps the typeface and removes exactly what was objected to.
-    'fraunces-plain': {
-      label: 'Fraunces, wonk off',
-      href: 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300,0,0;1,9..144,300,0,0&display=swap',
-      stack: '"Fraunces", Georgia, serif'
+    // Sans-serif options. All widely used, so they read as familiar rather
+    // than as a choice. Body text stays Assistant in every case.
+    'assistant': {
+      label: 'Assistant Light',
+      href: 'https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&display=swap',
+      stack: '"Assistant", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      weight: '300'
     },
-    'instrument': {
-      label: 'Instrument Serif',
-      href: 'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap',
-      stack: '"Instrument Serif", Georgia, serif'
+    'figtree': {
+      label: 'Figtree',
+      href: 'https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;1,300&display=swap',
+      stack: '"Figtree", -apple-system, sans-serif',
+      weight: '300'
     },
-    'lora': {
-      label: 'Lora',
-      href: 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap',
-      stack: '"Lora", Georgia, serif'
+    'worksans': {
+      label: 'Work Sans',
+      href: 'https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;1,300&display=swap',
+      stack: '"Work Sans", -apple-system, sans-serif',
+      weight: '300'
     },
-    'spectral': {
-      label: 'Spectral',
-      href: 'https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&display=swap',
-      stack: '"Spectral", Georgia, serif'
+    'lato': {
+      label: 'Lato',
+      href: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&display=swap',
+      stack: '"Lato", -apple-system, sans-serif',
+      weight: '300'
+    },
+    'dmsans': {
+      label: 'DM Sans',
+      href: 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap',
+      stack: '"DM Sans", -apple-system, sans-serif',
+      weight: '300'
     }
   };
 
@@ -886,10 +901,13 @@
       link.href = f.href;
       document.head.appendChild(link);
       document.documentElement.style.setProperty('--font-display', f.stack);
-      // Instrument Serif has no light weight; 400 is its regular
-      if (font === 'instrument') {
+      if (f.weight) {
         var st = document.createElement('style');
-        st.textContent = 'h1,h2,h3,.plan__amount,.wordmark{font-weight:400}';
+        // Sans faces need tighter line-height and less negative tracking than
+        // the serif they replace, or large headings look cramped and loose.
+        st.textContent = 'h1,h2,h3,.plan__amount,.wordmark,.step__num{' +
+                         'font-weight:' + f.weight + ';letter-spacing:-0.025em}' +
+                         'h1{line-height:1.04}';
         document.head.appendChild(st);
       }
       notes.push(f.label);

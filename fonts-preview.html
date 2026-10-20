@@ -3,45 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cove — display font options</title>
+<title>Cove — sans-serif options</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300,0,0;1,9..144,300,0,0&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap">
 <style>
   :root{--navy:#112337;--cream:#F6F1E7;--teal:#1E9C92;--ink:#6F5B42;--line:rgba(17,35,55,.14)}
   *{box-sizing:border-box}
   body{margin:0;background:var(--cream);color:var(--navy);
        font-family:"Assistant",-apple-system,system-ui,sans-serif;font-size:17px;line-height:1.6}
-  .wrap{max-width:60rem;margin:0 auto;padding:clamp(1.5rem, 4vw, 3rem)}
-  .lede{max-width:40rem;margin-bottom:3rem}
-  h1{font-family:"Fraunces",Georgia,serif;font-weight:300;font-size:clamp(2rem, 1.2rem + 3vw, 3rem);
-     line-height:1.08;letter-spacing:-.02em;margin:0 0 .4em}
+  .wrap{max-width:62rem;margin:0 auto;padding:clamp(1.5rem, 4vw, 3rem)}
+  .lede{max-width:42rem;margin-bottom:3rem}
+  .lede h1{font-family:"Assistant",sans-serif;font-weight:300;letter-spacing:-.025em;
+           font-size:clamp(2rem, 1.2rem + 3vw, 3rem);line-height:1.05;margin:0 0 .5em}
   .eyebrow{font-size:.8125rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
            color:var(--ink);display:block;margin-bottom:1rem}
-  .opt{border-top:2px solid var(--navy);padding:1.5rem 0 2.5rem}
+  .opt{border-top:2px solid var(--navy);padding:1.75rem 0 2.75rem}
   .opt__name{font-size:.8125rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-             color:var(--ink);margin:0 0 .2rem}
-  .opt__note{font-size:.9375rem;color:rgba(17,35,55,.75);margin:0 0 1.5rem;max-width:42rem}
-  .sample{font-weight:300;line-height:1.08;letter-spacing:-.02em;margin:0 0 .6rem;
+             color:var(--ink);margin:0 0 .3rem}
+  .opt__note{font-size:.9375rem;color:rgba(17,35,55,.75);margin:0 0 1.6rem;max-width:44rem}
+  .sample{font-weight:300;line-height:1.05;letter-spacing:-.025em;margin:0 0 .5rem;
           font-size:clamp(1.9rem, 1.1rem + 3vw, 3rem)}
   .sample em{font-style:italic}
-  .glyphs{font-size:clamp(2.5rem, 2rem + 4vw, 4.5rem);line-height:1;letter-spacing:.06em;
-          color:var(--teal);margin:.6rem 0 0}
-  .price{font-weight:300;font-size:2.5rem;letter-spacing:-.03em}
-  .f1{font-family:"Fraunces",Georgia,serif}
-  .f2{font-family:"Fraunces",Georgia,serif;font-variation-settings:"WONK" 0,"SOFT" 0,"opsz" 72}
-  .f3{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
-  .f4{font-family:"Lora",Georgia,serif;font-weight:400}
-  .f5{font-family:"Spectral",Georgia,serif;font-weight:300}
-  .tag{display:inline-block;background:var(--teal);color:var(--navy);font-family:"Assistant",sans-serif;
-       font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-       padding:.25rem .6rem;border-radius:999px;margin-left:.5rem;vertical-align:middle}
-  .live{font-size:.9375rem;margin-top:1rem}
+  .row{display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap;margin-top:.6rem}
+  .price{font-weight:300;font-size:clamp(2.2rem, 1.6rem + 2vw, 3rem);letter-spacing:-.03em}
+  .glyphs{font-size:clamp(2rem, 1.6rem + 2.5vw, 3.2rem);letter-spacing:.04em;color:var(--teal);
+          font-weight:300}
+  .tag{display:inline-block;background:var(--teal);color:var(--navy);font-size:.75rem;
+       font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;
+       border-radius:999px;margin-left:.5rem;vertical-align:middle}
+  .old{font-family:"Fraunces",Georgia,serif}
+  .f-assistant{font-family:"Assistant",sans-serif}
+  .f-figtree{font-family:"Figtree",sans-serif}
+  .f-worksans{font-family:"Work Sans",sans-serif}
+  .f-lato{font-family:"Lato",sans-serif}
+  .f-dmsans{font-family:"DM Sans",sans-serif}
+  .live{font-size:.9375rem;margin-top:2rem;line-height:2}
   .live a{color:#136E67}
 </style>
 </head>
@@ -49,71 +51,73 @@
 <div class="wrap">
   <div class="lede">
     <span class="eyebrow">Cove · display font</span>
-    <h1>The S and the J.</h1>
-    <p>The current typeface is <strong>Fraunces</strong>, chosen in the brand deck. It has
-    a <em>wonk</em> setting that deliberately skews certain letters, and turning it off
-    (option&nbsp;2) gives the J a normal descending hook. It does <strong>not</strong>
-    change the S noticeably — so if the S is the problem, the answer is a different
-    typeface, options&nbsp;3 to&nbsp;5.</p>
-    <p>Each option below shows the headline, the price figure, and the two letters in
-    question at large size. Body text stays Assistant either way.</p>
+    <h1>Sans-serif options.</h1>
+    <p>All five are in heavy use across the web, so they read as familiar rather than as
+    a choice. Body text stays <strong>Assistant</strong> throughout — only the headings,
+    prices and the wordmark change.</p>
+    <p><strong>One trade-off worth knowing.</strong> The brand deck paired a serif
+    display with a sans body, and that contrast is doing some work. All-sans is cleaner
+    and more familiar, but it is also what most gym websites look like. Option 1 keeps
+    things tightest by using the font already in the brand.</p>
   </div>
 
   <section class="opt">
-    <p class="opt__name">1 · Fraunces — what’s on the site now</p>
-    <p class="opt__note">Wonk on. Note the flicked S and the curling J.</p>
-    <p class="sample f1">You don’t have to be a <em>gym person.</em></p>
-    <p class="sample f1">Simple pricing. <span class="price f1">£59.99</span></p>
-    <p class="glyphs f1">S J</p>
+    <p class="opt__name">Current · Fraunces</p>
+    <p class="opt__note">For comparison.</p>
+    <p class="sample old">You don’t have to be a <em>gym person.</em></p>
+    <div class="row"><span class="price old">£59.99</span><span class="glyphs old">S J a g</span></div>
   </section>
 
   <section class="opt">
-    <p class="opt__name">2 · Fraunces, wonk off <span class="tag">Smallest change</span></p>
-    <p class="opt__note"><strong>Fixes the J, not the S.</strong> The J gains a proper
-      descending hook instead of the stubby one sitting on the baseline. The S is
-      virtually unchanged — Fraunces&rsquo; S isn&rsquo;t driven by the wonk axis, that is
-      simply how the typeface draws it. So if the J was the thing bothering you, this is
-      the smallest possible fix and the brand deck still holds. If it is the S, you need
-      one of the three below.</p>
-    <p class="sample f2">You don’t have to be a <em>gym person.</em></p>
-    <p class="sample f2">Simple pricing. <span class="price f2">£59.99</span></p>
-    <p class="glyphs f2">S J</p>
+    <p class="opt__name">1 · Assistant Light <span class="tag">Recommended</span></p>
+    <p class="opt__note">The font already used for body text, set light and large. One
+      family across the whole site, nothing extra to load, and it keeps a decision the
+      brand deck already made. Quiet and very legible.</p>
+    <p class="sample f-assistant">You don’t have to be a <em>gym person.</em></p>
+    <div class="row"><span class="price f-assistant">£59.99</span><span class="glyphs f-assistant">S J a g</span></div>
   </section>
 
   <section class="opt">
-    <p class="opt__name">3 · Instrument Serif</p>
-    <p class="opt__note">Higher contrast and more editorial. Elegant, slightly cooler in
-      feel. Only one weight, so it is display-only.</p>
-    <p class="sample f3">You don’t have to be a <em>gym person.</em></p>
-    <p class="sample f3">Simple pricing. <span class="price f3">£59.99</span></p>
-    <p class="glyphs f3">S J</p>
+    <p class="opt__name">2 · Figtree</p>
+    <p class="opt__note">Warm and slightly geometric. Friendlier than most sans faces at
+      large sizes, which suits a gym that is trying not to feel like one.</p>
+    <p class="sample f-figtree">You don’t have to be a <em>gym person.</em></p>
+    <div class="row"><span class="price f-figtree">£59.99</span><span class="glyphs f-figtree">S J a g</span></div>
   </section>
 
   <section class="opt">
-    <p class="opt__name">4 · Lora</p>
-    <p class="opt__note">Warmer and rounder, the friendliest of the four. Less distinctive —
-      it reads as a safe serif rather than a brand.</p>
-    <p class="sample f4">You don’t have to be a <em>gym person.</em></p>
-    <p class="sample f4">Simple pricing. <span class="price f4">£59.99</span></p>
-    <p class="glyphs f4">S J</p>
+    <p class="opt__name">3 · Work Sans</p>
+    <p class="opt__note">Humanist and open. Slightly more character than Assistant without
+      drawing attention to itself.</p>
+    <p class="sample f-worksans">You don’t have to be a <em>gym person.</em></p>
+    <div class="row"><span class="price f-worksans">£59.99</span><span class="glyphs f-worksans">S J a g</span></div>
   </section>
 
   <section class="opt">
-    <p class="opt__name">5 · Spectral</p>
-    <p class="opt__note">Calm and even. Holds up well at large sizes and in italic.
-      Least characterful of the set.</p>
-    <p class="sample f5">You don’t have to be a <em>gym person.</em></p>
-    <p class="sample f5">Simple pricing. <span class="price f5">£59.99</span></p>
-    <p class="glyphs f5">S J</p>
+    <p class="opt__name">4 · Lato</p>
+    <p class="opt__note">Probably the most familiar face here — it has been everywhere for
+      a decade. Warm, soft, safe. The risk is that it reads as generic.</p>
+    <p class="sample f-lato">You don’t have to be a <em>gym person.</em></p>
+    <div class="row"><span class="price f-lato">£59.99</span><span class="glyphs f-lato">S J a g</span></div>
   </section>
 
-  <p class="live">See any of them on the real page:
-    <a href="/?font=fraunces-plain">wonk off</a> ·
-    <a href="/?font=instrument">Instrument</a> ·
-    <a href="/?font=lora">Lora</a> ·
-    <a href="/?font=spectral">Spectral</a> ·
+  <section class="opt">
+    <p class="opt__name">5 · DM Sans</p>
+    <p class="opt__note">Cleaner and more geometric, a little more contemporary. Crisp at
+      large sizes; slightly cooler in feel than the others.</p>
+    <p class="sample f-dmsans">You don’t have to be a <em>gym person.</em></p>
+    <div class="row"><span class="price f-dmsans">£59.99</span><span class="glyphs f-dmsans">S J a g</span></div>
+  </section>
+
+  <p class="live">See any of them on the real page:<br>
+    <a href="/?font=assistant">Assistant Light</a> ·
+    <a href="/?font=figtree">Figtree</a> ·
+    <a href="/?font=worksans">Work Sans</a> ·
+    <a href="/?font=lato">Lato</a> ·
+    <a href="/?font=dmsans">DM Sans</a><br>
     <a href="/?palette=seaglass">Sea glass palette</a> ·
-    <a href="/?palette=seaglass&amp;font=fraunces-plain">both</a>
+    <a href="/?palette=seaglass&amp;font=assistant">Sea glass + Assistant</a> ·
+    <a href="/">back to the live site</a>
   </p>
 </div>
 </body>

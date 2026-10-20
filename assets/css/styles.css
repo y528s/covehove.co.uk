@@ -901,28 +901,44 @@ a:hover { color: var(--navy); }
 
 .tt-item {
   display: grid;
-  grid-template-columns: 4.75rem 1fr auto;
-  align-items: baseline;
+  grid-template-columns: 4.5rem 1fr;
+  align-items: center;
   gap: 0.5rem 0.75rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid var(--line);
+  padding: 0.2rem 0;
   font-size: var(--step-small);
 }
-.tt-item:last-child { border-bottom: 0; }
 
 .tt-time {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.tt-name { line-height: 1.35; }
+
+/* --- The coloured class block ------------------------------------------- *
+ * Matches the printed timetable: Gym classes on warm sand, Studio classes
+ * on sage, the time left clear to the side as it is on the printed sheet.
+ * Tints sampled from that artwork. Navy sits at 10:1 on both.              */
+.tt-class {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(17, 35, 55, 0.05);
+  min-width: 0;
+}
+.tt-item[data-room="Gym"]    .tt-class { background: #DDD0C2; }
+.tt-item[data-room="Studio"] .tt-class { background: #BFD3CA; }
+
+.tt-name { line-height: 1.35; min-width: 0; }
 
 .room {
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: #574734;          /* 5.9:1 on sand, 5.7:1 on sage */
   white-space: nowrap;
 }
 
