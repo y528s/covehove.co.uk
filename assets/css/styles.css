@@ -1410,3 +1410,31 @@ a:hover { color: var(--navy); }
   --teal-bright: #A8C7BE;   /* lifted, 8.8:1 — links on the navy band      */
 }
 :root[data-accent="green"] .btn--primary:hover { background: #8FB0A7; }
+
+
+/* ==========================================================================
+   19. FOREST DARK (preview only)
+   --------------------------------------------------------------------------
+   ?dark=forest replaces navy with the deep green from the printed timetable,
+   #2D4A43, as the ink and the dark bands. Cream, sand and the green accent
+   stay.
+
+   Why this rather than a forest-green button: the deep green is almost the
+   same value as the navy text it would sit beside — 1.65:1 between them — so
+   a button in it stops looking pressable. Dark tones belong in type and
+   bands; accents need to be light enough to stand out from the type.
+
+   Forest as the ink reads 8.6:1 on cream. That passes, but it is softer than
+   navy's 14.1:1, so the whole page feels gentler and slightly lower contrast.
+   ========================================================================== */
+
+:root[data-dark="forest"] {
+  --navy: #2D4A43;          /* deep green from the timetable artwork      */
+  --teal: #A8CBC1;          /* lifted so forest text on it reads 5.5:1    */
+  --ink-teal: #3D6A5E;      /* links on cream, 5.5:1                      */
+  --teal-bright: #C9DCD6;   /* links on the dark band, 6.8:1              */
+  --oat: #B9CFC8;           /* muted text on the dark band, 5.9:1         */
+  --line:         rgba(45, 74, 67, 0.16);
+  --line-strong:  rgba(45, 74, 67, 0.30);
+}
+:root[data-dark="forest"] .btn--primary:hover { background: #B4D3CA; }

@@ -901,6 +901,15 @@
       notes.push('Green accent');
     }
 
+    // The deep green from the printed timetable, used as the ink and the
+    // dark bands rather than as a button colour.
+    if (params.get('dark') === 'forest') {
+      document.documentElement.setAttribute('data-dark', 'forest');
+      var heroF = document.querySelector('.media--hero img');
+      if (heroF) heroF.src = 'assets/img/placeholder-hero-forest.svg';
+      notes.push('Forest green');
+    }
+
     if (palette === 'seaglass') {
       document.documentElement.setAttribute('data-palette', 'seaglass');
       // The hero panel is a flat SVG with its colours baked in, so it needs
