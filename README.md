@@ -100,11 +100,11 @@ All in `config.js`. The gym floor opens an hour later at weekends, so hours are 
 values:
 
 ```js
-gymWeekdays: "7am–10pm",   // Monday to Friday
-gymWeekend:  "8am–10pm",   // Saturday and Sunday
+gymWeekdays: "7am–9pm",    // Monday to Friday
+gymWeekend:  "8am–9pm",    // Saturday and Sunday
 ```
 
-The site builds the line **"Mon–Fri 7am–10pm, Sat–Sun 8am–10pm"** from those two
+The site builds the line **"Mon–Fri 7am–9pm, Sat–Sun 8am–9pm"** from those two
 wherever opening hours appear, so they can't drift apart. Change them in one place.
 
 ⚠️ **One thing lives outside config:** the machine-readable hours Google reads are in
@@ -399,6 +399,38 @@ dig +short covehove.co.uk
 ```
 
 You want the four `185.199.…` addresses.
+
+---
+
+## Previews
+
+Two alternatives can be looked at on the real page without changing it for anyone else.
+Both are driven by a URL parameter and show a bar at the bottom so a preview is never
+mistaken for the live site.
+
+| What | URL |
+|---|---|
+| Sea glass palette | `https://covehove.co.uk/?palette=seaglass` |
+| Fraunces, wonk off | `https://covehove.co.uk/?font=fraunces-plain` |
+| Instrument Serif | `https://covehove.co.uk/?font=instrument` |
+| Lora | `https://covehove.co.uk/?font=lora` |
+| Spectral | `https://covehove.co.uk/?font=spectral` |
+| Fonts side by side | `https://covehove.co.uk/fonts-preview.html` |
+
+**On the Sea glass palette.** The four supplied colours — Sea glass `#7FA39A`, Driftwood
+`#A08B74`, Sand `#E9E1D2`, Chalk `#F6F3EC` — contain nothing dark enough to set text.
+Measured on Chalk: Sea glass 2.49:1, Driftwood 2.94:1, Sand 1.17:1, against a 4.5:1
+requirement. The preview therefore invents a fifth colour, a warm near-black `#2E2720`,
+to carry body text and the dark bands, plus darkened sea glass and driftwood for links
+and captions. **If the palette is adopted, that dark tone has to be a deliberate brand
+decision**, not something a developer picked.
+
+**On the fonts.** Turning Fraunces' wonk axis off fixes the J — it gains a proper
+descending hook — but leaves the S essentially unchanged, because the S is not driven by
+that axis. If the S is the objection, it needs a different typeface.
+
+Once these are decided, delete `fonts-preview.html`, the `initPreview` block in
+`main.js`, and section 17 of `styles.css`.
 
 ---|---|---|
 | A | `@` | `185.199.108.153` |
