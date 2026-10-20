@@ -713,6 +713,79 @@ a:hover { color: var(--navy); }
 .plans-note { margin-top: 2rem; font-size: var(--step-small); }
 
 
+/* --- How it works: three steps ------------------------------------------ *
+ * Numbered, with a rule running between them so it reads as a sequence
+ * rather than three unrelated cards. The rule is decorative and is drawn
+ * with a pseudo-element, so screen readers get a plain ordered list.       */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(2rem, 1.4rem + 2vw, 2.5rem);
+  counter-reset: step;
+}
+@media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+
+.step { position: relative; padding-top: 0.5rem; }
+
+.step__num {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--sand);
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* the connecting rule */
+.step::before {
+  content: "";
+  position: absolute;
+  background: var(--line-strong);
+}
+@media (min-width: 820px) {
+  .step::before {
+    top: 2rem;
+    left: 3rem;
+    right: calc(-1 * clamp(2rem, 1.4rem + 2vw, 2.5rem));
+    height: 1px;
+  }
+  .step:last-child::before { display: none; }
+}
+@media (max-width: 819px) {
+  .step::before {
+    left: 1.5rem;
+    top: 3.5rem;
+    bottom: calc(-1 * clamp(2rem, 1.4rem + 2vw, 2.5rem));
+    width: 1px;
+  }
+  .step:last-child::before { display: none; }
+}
+
+.step__title {
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  margin-bottom: 0.4em;
+  max-width: 18rem;
+}
+
+.step__body {
+  font-size: var(--step-small);
+  color: rgba(17, 35, 55, 0.75);
+  max-width: 20rem;
+  margin: 0;
+}
+
+
 /* ==========================================================================
    10. CLASSES & TIMETABLE
    ========================================================================== */
