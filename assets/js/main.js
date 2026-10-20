@@ -845,13 +845,22 @@
      ---------------------------------------------------------------------- */
 
   var PREVIEW_FONTS = {
+    // The original brand serif, kept so it can still be compared against.
+    'fraunces': {
+      label: 'Fraunces (the original)',
+      href: 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap',
+      stack: '"Fraunces", Georgia, serif',
+      weight: '300',
+      italic: true
+    },
     // Sans-serif options. All widely used, so they read as familiar rather
     // than as a choice. Body text stays Assistant in every case.
     'assistant': {
       label: 'Assistant Light',
       href: 'https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&display=swap',
       stack: '"Assistant", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      weight: '300'
+      weight: '300',
+      italic: false
     },
     'figtree': {
       label: 'Figtree',
@@ -907,7 +916,11 @@
         // the serif they replace, or large headings look cramped and loose.
         st.textContent = 'h1,h2,h3,.plan__amount,.wordmark,.step__num{' +
                          'font-weight:' + f.weight + ';letter-spacing:-0.025em}' +
-                         'h1{line-height:1.04}';
+                         'h1{line-height:1.04}' +
+                         // every preview face except Assistant has a real
+                         // italic, so emphasis can go back to a slant
+                         (f.italic === false ? '' :
+                           'h1 em,h2 em,h3 em{font-style:italic;font-weight:' + f.weight + '}');
         document.head.appendChild(st);
       }
       notes.push(f.label);

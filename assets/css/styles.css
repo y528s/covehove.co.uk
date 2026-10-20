@@ -63,7 +63,10 @@
   --shadow-md: 0 2px 4px rgba(17, 35, 55, 0.06), 0 16px 40px rgba(17, 35, 55, 0.09);
 
   /* --- Type ------------------------------------------------------------- */
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  /* One family across the whole site. Assistant has no italic, so emphasis
+     in headings is carried by weight rather than slant — see h1 em below.
+     Do not set italic on a heading; the browser would fake a slant. */
+  --font-display: "Assistant", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: "Assistant", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --step-hero: clamp(2.75rem, 1.2rem + 6.6vw, 5.75rem);
@@ -184,18 +187,19 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
 h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 300;
-  font-optical-sizing: auto;
-  line-height: 1.06;
-  letter-spacing: -0.018em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   margin: 0 0 0.5em;
   text-wrap: balance;
 }
 
-h1 { font-size: var(--step-hero); }
+h1 { font-size: var(--step-hero); letter-spacing: -0.035em; }
 h2 { font-size: var(--step-h2); }
-h3 { font-size: var(--step-h3); line-height: 1.18; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-h3); line-height: 1.2; letter-spacing: -0.02em; }
 
-h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
+/* Emphasis is weight, not slant. Assistant has no italic face, and a faked
+   one looks cheap at headline size. */
+h1 em, h2 em, h3 em { font-style: normal; font-weight: 600; }
 
 p { margin: 0 0 1.15em; max-width: var(--measure); }
 p:last-child { margin-bottom: 0; }
@@ -363,7 +367,7 @@ a:hover { color: var(--navy); }
   font-family: var(--font-display);
   font-weight: 300;
   font-size: 1.85rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
   line-height: 1;
   color: var(--navy);
   text-decoration: none;
@@ -696,7 +700,7 @@ a:hover { color: var(--navy); }
   font-weight: 300;
   font-size: var(--step-price);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 .plan__period { font-size: var(--step-small); color: var(--ink-muted); }
 .plan__fee { font-size: var(--step-small); color: var(--ink-muted); margin: 0 0 1.5rem; }
