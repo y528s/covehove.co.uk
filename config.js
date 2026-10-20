@@ -43,10 +43,10 @@ window.COVE_CONFIG = {
      -------------------------------------------------------------------- */
   hours: {
     // The gym floor opens an hour later at weekends. The site builds the
-    // summary line "Mon–Fri 7am–10pm, Sat–Sun 8am–10pm" from these two, so
+    // summary line "Mon–Fri 7am–9pm, Sat–Sun 8am–9pm" from these two, so
     // change them here and it updates everywhere it appears.
-    gymWeekdays: "7am–10pm",   // Monday to Friday
-    gymWeekend: "8am–10pm",    // Saturday and Sunday
+    gymWeekdays: "7am–9pm",    // Monday to Friday
+    gymWeekend: "8am–9pm",     // Saturday and Sunday
     classes: "Monday to Saturday"
     // NOTE: the machine-readable hours Google reads are in index.html, in the
     // JSON-LD block near the top — search for openingHoursSpecification.

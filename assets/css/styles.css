@@ -1237,3 +1237,63 @@ a:hover { color: var(--navy); }
   .site-header, .consent, .nav, .btn { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+
+/* ==========================================================================
+   17. PALETTE B — "SEA GLASS" (preview only)
+   --------------------------------------------------------------------------
+   Switched on by adding ?palette=seaglass to the URL. Nothing here affects
+   the live site unless that parameter is present.
+
+   The four supplied colours are:
+     Sea glass #7FA39A   Driftwood #A08B74   Sand #E9E1D2   Chalk #F6F3EC
+
+   ⚠️ None of them can carry text. Measured on Chalk:
+        Sea glass 2.49:1    Driftwood 2.94:1    Sand 1.17:1
+      WCAG AA needs 4.5:1. The darkest supplied colour is not dark enough for
+      body copy, and there is nothing to make the dark bands out of either.
+
+   So this preview derives a fifth colour — a warm near-black in the driftwood
+   family, #2E2720, at 13.3:1 — plus darkened members of the sea glass and
+   driftwood families for links and captions. If the palette is adopted, that
+   dark tone needs to be a deliberate brand decision, not something invented
+   in a stylesheet.
+   ========================================================================== */
+
+:root[data-palette="seaglass"] {
+  --navy:  #2E2720;   /* derived: warm near-black, 13.3:1 on Chalk */
+  --cream: #F6F3EC;   /* Chalk */
+  --sand:  #E9E1D2;   /* Sand */
+  --teal:  #7FA39A;   /* Sea glass */
+  --cocoa: #A08B74;   /* Driftwood */
+  --oat:   #C9BCA8;   /* derived: muted text on the dark band */
+
+  --ink-muted:   #6E5B47;  /* darkened driftwood, 5.8:1 — captions, eyebrows */
+  --ink-teal:    #46655B;  /* darkened sea glass, 5.8:1 — links on Chalk     */
+  --teal-bright: #A8C7BE;  /* lifted sea glass — links on the dark band      */
+
+  --line:        rgba(46, 39, 32, 0.14);
+  --line-strong: rgba(46, 39, 32, 0.28);
+  --line-on-navy: rgba(246, 243, 236, 0.18);
+  --surface-raised: #FFFDF8;
+}
+
+/* Sea glass is lighter than the teal it replaces, so the primary button needs
+   the dark ink on it rather than anything lighter — 5.3:1 this way round. */
+:root[data-palette="seaglass"] .btn--primary { background: var(--teal); color: var(--navy); }
+:root[data-palette="seaglass"] .btn--primary:hover { background: #8FB0A7; color: var(--navy); }
+:root[data-palette="seaglass"] ::selection { background: var(--sand); color: var(--navy); }
+
+/* A small flag so nobody mistakes a preview for the real thing */
+.palette-flag {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 300;
+  background: var(--navy);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+.palette-flag a { color: var(--teal-bright); }

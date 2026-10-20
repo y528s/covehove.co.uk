@@ -344,11 +344,6 @@
       heading.textContent = 'The weekly timetable';
       wrap.appendChild(heading);
 
-      var intro = document.createElement('p');
-      intro.className = 'muted small timetable-intro';
-      intro.textContent = 'The same every week. Classes are in the Gym or the Studio — it says which.';
-      wrap.appendChild(intro);
-
       /* --- Controls ----------------------------------------------------
          Both the kind filter and the day tabs are built here rather than in
          index.html, so that with JavaScript off the whole timetable simply
@@ -834,7 +829,84 @@
      Go
      ---------------------------------------------------------------------- */
 
+  /* ----------------------------------------------------------------------
+     Preview modes
+     ----------------------------------------------------------------------
+     ?palette=seaglass  swaps the colour palette
+     ?font=<name>       swaps the display typeface
+     Neither changes the live site unless the parameter is in the URL. They
+     exist so alternatives can be looked at on the real page rather than in
+     a mock-up. Remove this block once the decisions are made.
+     ---------------------------------------------------------------------- */
+
+  var PREVIEW_FONTS = {
+    // Fraunces has a WONK axis that produces its quirky S and J. Setting it
+    // to 0 keeps the typeface and removes exactly what was objected to.
+    'fraunces-plain': {
+      label: 'Fraunces, wonk off',
+      href: 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300,0,0;1,9..144,300,0,0&display=swap',
+      stack: '"Fraunces", Georgia, serif'
+    },
+    'instrument': {
+      label: 'Instrument Serif',
+      href: 'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap',
+      stack: '"Instrument Serif", Georgia, serif'
+    },
+    'lora': {
+      label: 'Lora',
+      href: 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap',
+      stack: '"Lora", Georgia, serif'
+    },
+    'spectral': {
+      label: 'Spectral',
+      href: 'https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&display=swap',
+      stack: '"Spectral", Georgia, serif'
+    }
+  };
+
+  function initPreview() {
+    var params = new URLSearchParams(window.location.search);
+    var palette = params.get('palette');
+    var font = params.get('font');
+    var notes = [];
+
+    if (palette === 'seaglass') {
+      document.documentElement.setAttribute('data-palette', 'seaglass');
+      // The hero panel is a flat SVG with its colours baked in, so it needs
+      // swapping too or it sits there in the old navy and skews the preview.
+      var hero = document.querySelector('.media--hero img');
+      if (hero) hero.src = 'assets/img/placeholder-hero-seaglass.svg';
+      notes.push('Sea glass palette');
+    }
+
+    if (font && PREVIEW_FONTS[font]) {
+      var f = PREVIEW_FONTS[font];
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = f.href;
+      document.head.appendChild(link);
+      document.documentElement.style.setProperty('--font-display', f.stack);
+      // Instrument Serif has no light weight; 400 is its regular
+      if (font === 'instrument') {
+        var st = document.createElement('style');
+        st.textContent = 'h1,h2,h3,.plan__amount,.wordmark{font-weight:400}';
+        document.head.appendChild(st);
+      }
+      notes.push(f.label);
+    }
+
+    if (notes.length) {
+      var flag = document.createElement('div');
+      flag.className = 'palette-flag';
+      flag.innerHTML = 'Preview: <strong></strong> — not the live site. ' +
+                       '<a href="' + window.location.pathname + '">See the real one</a>';
+      flag.querySelector('strong').textContent = notes.join(' + ');
+      document.body.appendChild(flag);
+    }
+  }
+
   function init() {
+    initPreview();
     if (!window.COVE_CONFIG) {
       console.error('[Cove] config.js did not load, so the page is showing its built-in defaults.');
     }
