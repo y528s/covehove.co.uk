@@ -891,8 +891,15 @@
   function initPreview() {
     var params = new URLSearchParams(window.location.search);
     var palette = params.get('palette');
+    var accent = params.get('accent');
     var font = params.get('font');
     var notes = [];
+
+    // Palette A with only the interactive colour changed: teal to green.
+    if (accent === 'green') {
+      document.documentElement.setAttribute('data-accent', 'green');
+      notes.push('Green accent');
+    }
 
     if (palette === 'seaglass') {
       document.documentElement.setAttribute('data-palette', 'seaglass');

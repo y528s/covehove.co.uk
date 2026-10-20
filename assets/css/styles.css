@@ -1390,3 +1390,23 @@ a:hover { color: var(--navy); }
   padding: 0.5rem 1rem;
 }
 .palette-flag a { color: var(--teal-bright); }
+
+
+/* ==========================================================================
+   18. GREEN ACCENT (preview only)
+   --------------------------------------------------------------------------
+   ?accent=green keeps Palette A's navy, cream and sand and swaps only the
+   interactive colour: the teal #1E9C92, which reads blue, becomes the sea
+   glass green #7FA39A.
+
+   It measures better than the teal it replaces. Navy on the green button is
+   5.77:1 against the teal's 4.72:1, and the derived link colours clear AA
+   comfortably on both the cream and the navy band.
+   ========================================================================== */
+
+:root[data-accent="green"] {
+  --teal:        #7FA39A;   /* sea glass — buttons and interactive fills   */
+  --ink-teal:    #46655B;   /* darkened, 5.7:1 — links on cream            */
+  --teal-bright: #A8C7BE;   /* lifted, 8.8:1 — links on the navy band      */
+}
+:root[data-accent="green"] .btn--primary:hover { background: #8FB0A7; }
