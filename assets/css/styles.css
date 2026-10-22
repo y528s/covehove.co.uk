@@ -1467,4 +1467,33 @@ a:hover { color: var(--navy); }
   --line-strong: rgba(47, 79, 79, 0.30);
   --line-on-navy: rgba(246, 241, 231, 0.20);
 }
-:root[data-dark="deepwater"] .btn--primary:hover { background: #A3DCD2; }
+
+/* The button needs two treatments under this scheme, and the reason is
+   arithmetic rather than taste. Deep water is lighter than navy (7.9:1 on
+   cream against navy's 14.1:1), so any fill able to carry deep-water text
+   must itself be light — light enough that the button stops separating from
+   the cream page. At the 4.5:1 minimum the best possible shape contrast is
+   1.8:1, which is not a button anyone notices.
+
+   So on cream the primary button goes dark with cream type, at 4.9:1 and a
+   strong 4.9:1 against the page. Inside the dark bands it stays light with
+   deep-water type. Same logic the rest of the sheet already uses for light
+   panels sitting on dark bands. */
+:root[data-dark="deepwater"] .btn--primary {
+  background: #1A756B;
+  color: var(--cream);
+}
+:root[data-dark="deepwater"] .btn--primary:hover {
+  background: #166B62;
+  color: var(--cream);
+}
+:root[data-dark="deepwater"] .band-navy .btn--primary,
+:root[data-dark="deepwater"] .on-navy .btn--primary {
+  background: #8FD3C8;
+  color: var(--navy);
+}
+:root[data-dark="deepwater"] .band-navy .btn--primary:hover,
+:root[data-dark="deepwater"] .on-navy .btn--primary:hover {
+  background: #A3DCD2;
+  color: var(--navy);
+}
