@@ -901,13 +901,19 @@
       notes.push('Green accent');
     }
 
-    // The deep green from the printed timetable, used as the ink and the
-    // dark bands rather than as a button colour.
-    if (params.get('dark') === 'forest') {
-      document.documentElement.setAttribute('data-dark', 'forest');
-      var heroF = document.querySelector('.media--hero img');
-      if (heroF) heroF.src = 'assets/img/placeholder-hero-forest.svg';
-      notes.push('Forest green');
+    // Alternative dark tones, used as the ink and the dark bands rather than
+    // as a button colour. Each brings its own hero panel, since that SVG has
+    // its colours baked in.
+    var DARKS = {
+      'forest':    { label: 'Forest green', hero: 'assets/img/placeholder-hero-forest.svg' },
+      'deepwater': { label: 'Deep water',   hero: 'assets/img/placeholder-hero-deepwater.svg' }
+    };
+    var dark = params.get('dark');
+    if (dark && DARKS[dark]) {
+      document.documentElement.setAttribute('data-dark', dark);
+      var heroD = document.querySelector('.media--hero img');
+      if (heroD) heroD.src = DARKS[dark].hero;
+      notes.push(DARKS[dark].label);
     }
 
     if (palette === 'seaglass') {

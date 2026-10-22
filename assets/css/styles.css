@@ -1438,3 +1438,33 @@ a:hover { color: var(--navy); }
   --line-strong:  rgba(45, 74, 67, 0.30);
 }
 :root[data-dark="forest"] .btn--primary:hover { background: #B4D3CA; }
+
+
+/* ==========================================================================
+   20. DEEP WATER (preview only)
+   --------------------------------------------------------------------------
+   ?dark=deepwater replaces navy with Deep water #2F4F4F as the ink and the
+   dark bands.
+
+   ⚠️ This one forces the accent to change as well. The existing teal
+   #1E9C92 cannot sit next to deep water — deep-water text on it is 2.65:1
+   and cream on it is 3.00:1, so neither label is legible. Teal and deep
+   water are too close in both hue and value. The accent therefore lifts to
+   a brighter aqua, which carries deep-water text at 5.2:1 and still reads
+   on the dark band.
+
+   Deep water on cream is 7.9:1. That passes, but navy was 14.1:1, so the
+   page reads distinctly softer.
+   ========================================================================== */
+
+:root[data-dark="deepwater"] {
+  --navy: #2F4F4F;          /* Deep water — ink and dark bands            */
+  --teal: #8FD3C8;          /* lifted aqua; deep-water text on it 5.2:1   */
+  --ink-teal: #25605C;      /* links on cream, 6.4:1                      */
+  --teal-bright: #A3DCD2;   /* links on the dark band, 5.8:1              */
+  --oat: #C4D2D2;           /* muted text on the dark band, 5.7:1         */
+  --line:        rgba(47, 79, 79, 0.16);
+  --line-strong: rgba(47, 79, 79, 0.30);
+  --line-on-navy: rgba(246, 241, 231, 0.20);
+}
+:root[data-dark="deepwater"] .btn--primary:hover { background: #A3DCD2; }
