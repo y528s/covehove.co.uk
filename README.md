@@ -483,23 +483,43 @@ assets/
 
 ### Brand rules the code enforces
 
-These came from the brand deck and are wired into `assets/css/styles.css`. Please keep them.
+These are wired into `assets/css/styles.css`. Please keep them.
 
-- **Teal never sets body text on cream.** It measures 3.0 : 1 and fails. Buttons use a
-  teal fill with a **navy** label (4.7 : 1). Links on cream use `--ink-teal`, a darkened
-  teal (5.4 : 1).
-- **Sand never sets type below 40px.** It is for large display words, decoration, and as
-  a background fill — the "Most popular" tag is sand with navy type on it, not sand type.
-- **Cocoa is too light for small text** on cream (4.0 : 1), so eyebrows and captions use
-  `--ink-muted`, a darkened cocoa (5.7 : 1).
-- Navy on cream is the default. Cream on navy is for feature bands.
+The palette is **Deep water** `#2F4F4F` for ink and dark bands, Cream `#F6F1E7`,
+Sand `#E2BB70`, with a teal accent. It replaced the original navy in October 2026.
+
+- **The primary button has two forms, and this is not a style choice.** Deep water is
+  lighter than the navy it replaced — 7.9:1 on cream against navy's 14.1:1 — so any
+  button fill able to carry deep-water text must itself be light, too light to separate
+  from the cream page. On cream the button is therefore dark (`--accent-solid`) with
+  cream type; inside the dark bands it is the light aqua (`--teal`) with deep-water type.
+  A cream island on a dark band — a pricing card, the form panel — uses the cream form.
+- **`--teal` is never a button on cream and never sets text.** It measures 1.5:1 there.
+  Links and focus rings on cream use `--ink-teal`.
+- **Sand never sets type below 40px.** It is for display words, decoration, and as a
+  background fill — the "Most popular" tag is sand with dark type on it, not sand type.
+- **Cocoa is too light for small text** on cream, so captions use `--ink-muted`.
 - **No BNJC branding.** Cove reads as its own organisation. "at Brighton Jewish Hub"
   appears once, small, in the footer, and nowhere else.
-- The tagline is **"You don't have to be a gym person."** The older "Nobody here is a
-  gym person" is retired.
+- The tagline is **"You don't have to be a gym person."**
 
-### Trying Palette B
+### Typography
 
-Every colour is a CSS custom property. Open `assets/css/styles.css` and change the six
-values in the `--- Brand palette A ---` block at the top, then re-check the contrast of
-the derived inks just below it. Nothing else in the file hard-codes a colour.
+One family: **Assistant**, light for headings and regular for body. Assistant has no
+italic, so emphasis in a heading is carried by weight — never set `font-style: italic`
+on a heading, the browser would fake a slant.
+
+### Comparing other schemes
+
+Add a parameter to any URL. None of them change the site for anyone else.
+
+| | |
+|---|---|
+| The previous navy | `?dark=navy` |
+| Forest green | `?dark=forest` |
+| Sea glass palette | `?palette=seaglass` |
+| Other display fonts | `?font=fraunces`, `?font=figtree`, `?font=lato`, `?font=worksans`, `?font=dmsans` |
+| Fonts side by side | `/fonts-preview.html` |
+
+Once these are settled for good, delete `fonts-preview.html`, the `initPreview` block in
+`main.js`, and sections 17 to 20 of `styles.css`.

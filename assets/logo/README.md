@@ -58,5 +58,5 @@ delete the folder if you would rather not have them in the repository.
 
 Note that these candidate files use the deck's working colours (`#123F4E`,
 `#2B7C8A`, `#E0B35F`), not the Palette A values this site is built on
-(`#112337`, `#1E9C92`, `#E2BB70`). Whichever mark wins will need recolouring to
+(`#2F4F4F`, `#8FD3C8`, `#E2BB70`). Whichever mark wins will need recolouring to
 the final palette before it goes in.

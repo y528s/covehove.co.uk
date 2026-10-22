@@ -905,8 +905,9 @@
     // as a button colour. Each brings its own hero panel, since that SVG has
     // its colours baked in.
     var DARKS = {
-      'forest':    { label: 'Forest green', hero: 'assets/img/placeholder-hero-forest.svg' },
-      'deepwater': { label: 'Deep water',   hero: 'assets/img/placeholder-hero-deepwater.svg' }
+      // Deep water is the live scheme; these are the comparisons.
+      'navy':   { label: 'The previous navy', hero: 'assets/img/placeholder-hero-navy.svg' },
+      'forest': { label: 'Forest green',      hero: 'assets/img/placeholder-hero-forest.svg' }
     };
     var dark = params.get('dark');
     if (dark && DARKS[dark]) {

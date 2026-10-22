@@ -28,39 +28,47 @@
    in the first block below — nothing else in this file hard-codes a colour.
 
    CONTRAST RULES, measured, do not break them:
-     navy on cream ......... 14.1 : 1   default body text
-     cream on navy ......... 14.1 : 1   text on dark bands
-     navy on teal ...........4.7 : 1   button text — teal fill, NAVY label
-     teal on cream ......... 3.0 : 1   FAILS. Never sets text on cream.
+     deep water on cream ... 7.9 : 1   default body text
+     cream on deep water ... 7.9 : 1   text on dark bands
+     cream on --accent-solid 4.9 : 1   the primary button on cream sections
+     deep water on --teal .. 5.2 : 1   the primary button inside dark bands
+     --teal on cream ....... 1.5 : 1   FAILS. Never a button on cream, never text.
      cocoa on cream ........ 4.0 : 1   FAILS below 18px. Use --ink-muted.
      sand on cream ......... 1.6 : 1   FAILS. Decoration and 40px+ display only.
+
+   The two-part button is forced by the maths, not a preference. Deep water
+   is lighter than the navy it replaced, so a fill able to carry deep-water
+   text must itself be light — too light to separate from the cream page.
+   Hence a dark fill with cream type on cream, and the light aqua only where
+   it sits on a dark band.
    ========================================================================== */
 
 :root {
   /* --- Brand palette A -------------------------------------------------- */
-  --navy:  #112337;
+  --navy:  #2F4F4F;   /* "Deep water" — ink and dark bands             */
   --cream: #F6F1E7;
   --sand:  #E2BB70;
-  --teal:  #1E9C92;
+  --teal:  #8FD3C8;   /* light aqua — accents sitting ON the dark bands */
   --cocoa: #8A7457;
-  --oat:   #B9AC9C;
+  --oat:   #C4D2D2;
 
   /* --- Derived inks ----------------------------------------------------- *
    * The brand colours above are surface colours. These darkened members of
    * the same families exist so small text can hit WCAG AA. Do not swap them
    * back to the raw brand colour for text.                                 */
   --ink-muted:    #6F5B42;  /* cocoa family, 5.7:1 on cream — eyebrows, captions */
-  --ink-teal:     #136E67;  /* teal family, 5.4:1 on cream — links on cream      */
-  --teal-bright:  #43C2B7;  /* 7.3:1 on navy — links and eyebrows on navy        */
+  --ink-teal:     #25605C;  /* 6.4:1 on cream — links, focus rings, input borders */
+  --teal-bright:  #A3DCD2;  /* 5.8:1 on deep water — links on the dark bands      */
+  --accent-solid: #1A756B;  /* the primary button on cream, cream type at 4.9:1   */
 
   /* --- Surfaces & lines ------------------------------------------------- */
   --surface:        var(--cream);
   --surface-raised: #FFFDF8;
-  --line:           rgba(17, 35, 55, 0.14);
-  --line-strong:    rgba(17, 35, 55, 0.28);
-  --line-on-navy:   rgba(246, 241, 231, 0.18);
-  --shadow-sm: 0 1px 2px rgba(17, 35, 55, 0.05), 0 6px 18px rgba(17, 35, 55, 0.05);
-  --shadow-md: 0 2px 4px rgba(17, 35, 55, 0.06), 0 16px 40px rgba(17, 35, 55, 0.09);
+  --line:           rgba(47, 79, 79, 0.14);
+  --line-strong:    rgba(47, 79, 79, 0.28);
+  --line-on-navy:   rgba(246, 241, 231, 0.22);
+  --shadow-sm: 0 1px 2px rgba(47, 79, 79, 0.05), 0 6px 18px rgba(47, 79, 79, 0.05);
+  --shadow-md: 0 2px 4px rgba(47, 79, 79, 0.06), 0 16px 40px rgba(47, 79, 79, 0.09);
 
   /* --- Type ------------------------------------------------------------- */
   /* One family across the whole site. Assistant has no italic, so emphasis
@@ -121,12 +129,12 @@ body {
 }
 
 img, svg { display: block; max-width: 100%; height: auto; }
-img { background: rgba(17, 35, 55, 0.04); }
+img { background: rgba(47, 79, 79, 0.04); }
 
 hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
 
 :focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--ink-teal);
   outline-offset: 2px;
   border-radius: 3px;
 }
@@ -172,7 +180,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
 .band-navy h2, .band-navy h3 { color: var(--cream); }
 
 .section-head { max-width: 46rem; margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem); }
-.section-head p { color: rgba(17, 35, 55, 0.78); font-size: var(--step-lead); }
+.section-head p { color: rgba(47, 79, 79, 0.78); font-size: var(--step-lead); }
 .band-navy .section-head p { color: var(--oat); }
 
 .grid { display: grid; gap: clamp(1.25rem, 0.8rem + 1.6vw, 2rem); }
@@ -257,16 +265,23 @@ a:hover { color: var(--navy); }
 }
 .btn:active { transform: translateY(1px); }
 
-/* Primary: teal fill with NAVY label — 4.7:1. Never white on teal (3.4:1). */
-.btn--primary { background: var(--teal); color: var(--navy); }
-.btn--primary:hover { background: #2AB3A7; color: var(--navy); }
+/* Primary button, two treatments. On cream it is dark with cream type; on a
+   dark band it is the light aqua with deep-water type. See the note at the
+   top of the file for why one colour cannot do both jobs here. */
+.btn--primary { background: var(--accent-solid); color: var(--cream); }
+.btn--primary:hover { background: #166B62; color: var(--cream); }
+
+.band-navy .btn--primary,
+.on-navy .btn--primary { background: var(--teal); color: var(--navy); }
+.band-navy .btn--primary:hover,
+.on-navy .btn--primary:hover { background: var(--teal-bright); color: var(--navy); }
 
 .btn--secondary {
   background: transparent;
   color: var(--navy);
   border-color: var(--line-strong);
 }
-.btn--secondary:hover { background: rgba(17, 35, 55, 0.05); color: var(--navy); }
+.btn--secondary:hover { background: rgba(47, 79, 79, 0.05); color: var(--navy); }
 
 .on-navy .btn--secondary, .band-navy .btn--secondary {
   color: var(--cream);
@@ -294,6 +309,24 @@ a:hover { color: var(--navy); }
 .band-navy .plan a:hover,
 .band-navy .form-panel a:hover { color: var(--navy); }
 
+/* A primary button inside one of these cream islands sits on cream, not on
+   the band, so it needs the dark fill back — the light aqua would all but
+   vanish on the card. */
+.on-navy .plan .btn--primary,
+.on-navy .form-panel .btn--primary,
+.band-navy .plan .btn--primary,
+.band-navy .form-panel .btn--primary {
+  background: var(--accent-solid);
+  color: var(--cream);
+}
+.on-navy .plan .btn--primary:hover,
+.on-navy .form-panel .btn--primary:hover,
+.band-navy .plan .btn--primary:hover,
+.band-navy .form-panel .btn--primary:hover {
+  background: #166B62;
+  color: var(--cream);
+}
+
 .on-navy .plan .btn--secondary,
 .on-navy .form-panel .btn--secondary,
 .band-navy .plan .btn--secondary,
@@ -307,7 +340,7 @@ a:hover { color: var(--navy); }
 .on-navy .form-panel .btn--secondary:hover,
 .band-navy .plan .btn--secondary:hover,
 .band-navy .form-panel .btn--secondary:hover {
-  background: rgba(17, 35, 55, 0.05);
+  background: rgba(47, 79, 79, 0.05);
   color: var(--navy);
 }
 
@@ -347,7 +380,7 @@ a:hover { color: var(--navy); }
 }
 .site-header[data-stuck="true"] {
   border-bottom-color: var(--line);
-  box-shadow: 0 1px 20px rgba(17, 35, 55, 0.06);
+  box-shadow: 0 1px 20px rgba(47, 79, 79, 0.06);
 }
 
 .site-header__inner {
@@ -493,7 +526,7 @@ a:hover { color: var(--navy); }
 }
 
 .hero h1 { margin-bottom: 0.35em; }
-.hero__lead { font-size: var(--step-lead); color: rgba(17, 35, 55, 0.8); max-width: 30rem; }
+.hero__lead { font-size: var(--step-lead); color: rgba(47, 79, 79, 0.8); max-width: 30rem; }
 .hero .btn-row { margin-top: 2rem; }
 
 .hero__note {
@@ -510,7 +543,7 @@ a:hover { color: var(--navy); }
   width: min(46rem, 70vw);
   aspect-ratio: 1;
   border-radius: 50%;
-  border: clamp(2rem, 4vw, 3.5rem) solid rgba(30, 156, 146, 0.07);
+  border: clamp(2rem, 4vw, 3.5rem) solid rgba(26, 117, 107, 0.07);
   pointer-events: none;
   z-index: -1;
 }
@@ -552,13 +585,13 @@ a:hover { color: var(--navy); }
   width: 40px; height: 40px;
   display: grid; place-items: center;
   border-radius: 50%;
-  background: rgba(30, 156, 146, 0.14);
+  background: rgba(26, 117, 107, 0.14);
   color: var(--ink-teal);
 }
 .band-navy .included__icon { background: rgba(67, 194, 183, 0.16); color: var(--teal-bright); }
 .included__icon svg { width: 20px; height: 20px; }
 .included__item h3 { font-family: var(--font-body); font-size: 1.0625rem; font-weight: 600; letter-spacing: 0; margin-bottom: 0.2rem; }
-.included__item p { font-size: var(--step-small); color: rgba(17, 35, 55, 0.72); margin: 0; }
+.included__item p { font-size: var(--step-small); color: rgba(47, 79, 79, 0.72); margin: 0; }
 .band-navy .included__item p { color: var(--oat); }
 
 .space-card {
@@ -617,7 +650,7 @@ a:hover { color: var(--navy); }
   background: linear-gradient(160deg,
     rgba(226, 187, 112, 0.18) 0%,
     rgba(246, 241, 231, 0.10) 45%,
-    rgba(17, 35, 55, 0.12) 100%);
+    rgba(47, 79, 79, 0.12) 100%);
   mix-blend-mode: soft-light;
 }
 
@@ -638,7 +671,7 @@ a:hover { color: var(--navy); }
   border-radius: var(--radius);
   overflow: hidden;
   aspect-ratio: 3 / 2;
-  background: rgba(17, 35, 55, 0.06);
+  background: rgba(47, 79, 79, 0.06);
 }
 .space-card__media img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -784,7 +817,7 @@ a:hover { color: var(--navy); }
 
 .step__body {
   font-size: var(--step-small);
-  color: rgba(17, 35, 55, 0.75);
+  color: rgba(47, 79, 79, 0.75);
   max-width: 20rem;
   margin: 0;
 }
@@ -929,7 +962,7 @@ a:hover { color: var(--navy); }
   gap: 0.75rem;
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
-  background: rgba(17, 35, 55, 0.05);
+  background: rgba(47, 79, 79, 0.05);
   min-width: 0;
 }
 .tt-item[data-room="Gym"]    .tt-class { background: #DDD0C2; }
@@ -1016,8 +1049,8 @@ a:hover { color: var(--navy); }
   padding-right: 2.5rem;
 }
 .input:focus, .select:focus, .textarea:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(30, 156, 146, 0.18);
+  border-color: var(--ink-teal);
+  box-shadow: 0 0 0 3px rgba(26, 117, 107, 0.18);
   outline: none;
 }
 .input[aria-invalid="true"], .select[aria-invalid="true"], .textarea[aria-invalid="true"] {
@@ -1042,9 +1075,9 @@ a:hover { color: var(--navy); }
   font-weight: 600;
   transition: border-color .15s ease, background-color .15s ease;
 }
-.choice input { accent-color: var(--teal); width: 18px; height: 18px; margin: 0; }
+.choice input { accent-color: var(--ink-teal); width: 18px; height: 18px; margin: 0; }
 .choice:hover { border-color: var(--navy); }
-.choice:has(input:checked) { border-color: var(--teal); background: rgba(30, 156, 146, 0.12); }
+.choice:has(input:checked) { border-color: var(--ink-teal); background: rgba(26, 117, 107, 0.12); }
 
 .checkbox {
   display: flex;
@@ -1056,7 +1089,7 @@ a:hover { color: var(--navy); }
   padding: 0.4rem 0;
   min-height: 44px;
 }
-.checkbox input { accent-color: var(--teal); width: 20px; height: 20px; margin: 3px 0 0; flex: 0 0 auto; }
+.checkbox input { accent-color: var(--ink-teal); width: 20px; height: 20px; margin: 3px 0 0; flex: 0 0 auto; }
 
 .error-text {
   font-size: 0.875rem;
@@ -1084,8 +1117,8 @@ a:hover { color: var(--navy); }
 }
 .form-status[data-state="success"] {
   display: block;
-  background: rgba(30, 156, 146, 0.14);
-  border: 1px solid rgba(19, 110, 103, 0.4);
+  background: rgba(26, 117, 107, 0.14);
+  border: 1px solid rgba(26, 117, 107, 0.45);
   color: var(--navy);
 }
 .form-status[data-state="error"] {
@@ -1194,7 +1227,7 @@ a:hover { color: var(--navy); }
 .faq details[open] summary .chev { transform: rotate(180deg); }
 
 .faq__answer { padding: 0 0 1.5rem; }
-.faq__answer p { font-size: var(--step-body); color: rgba(17, 35, 55, 0.8); max-width: 42rem; }
+.faq__answer p { font-size: var(--step-body); color: rgba(47, 79, 79, 0.8); max-width: 42rem; }
 
 
 /* ==========================================================================
@@ -1283,7 +1316,7 @@ a:hover { color: var(--navy); }
   line-height: 1.5;
   margin-bottom: 0.9rem;
   max-width: none;
-  color: rgba(17, 35, 55, 0.78);
+  color: rgba(47, 79, 79, 0.78);
 }
 .consent .btn-row { gap: 0.5rem; }
 .consent .btn {
@@ -1441,59 +1474,32 @@ a:hover { color: var(--navy); }
 
 
 /* ==========================================================================
-   20. DEEP WATER (preview only)
+   20. THE PREVIOUS NAVY (preview only)
    --------------------------------------------------------------------------
-   ?dark=deepwater replaces navy with Deep water #2F4F4F as the ink and the
-   dark bands.
-
-   ⚠️ This one forces the accent to change as well. The existing teal
-   #1E9C92 cannot sit next to deep water — deep-water text on it is 2.65:1
-   and cream on it is 3.00:1, so neither label is legible. Teal and deep
-   water are too close in both hue and value. The accent therefore lifts to
-   a brighter aqua, which carries deep-water text at 5.2:1 and still reads
-   on the dark band.
-
-   Deep water on cream is 7.9:1. That passes, but navy was 14.1:1, so the
-   page reads distinctly softer.
+   ?dark=navy restores the original navy and teal, for comparison against
+   the Deep water scheme that is now live.
    ========================================================================== */
 
-:root[data-dark="deepwater"] {
-  --navy: #2F4F4F;          /* Deep water — ink and dark bands            */
-  --teal: #8FD3C8;          /* lifted aqua; deep-water text on it 5.2:1   */
-  --ink-teal: #25605C;      /* links on cream, 6.4:1                      */
-  --teal-bright: #A3DCD2;   /* links on the dark band, 5.8:1              */
-  --oat: #C4D2D2;           /* muted text on the dark band, 5.7:1         */
-  --line:        rgba(47, 79, 79, 0.16);
-  --line-strong: rgba(47, 79, 79, 0.30);
-  --line-on-navy: rgba(246, 241, 231, 0.20);
+:root[data-dark="navy"] {
+  --navy: #112337;
+  --teal: #1E9C92;
+  --ink-teal: #136E67;
+  --teal-bright: #43C2B7;
+  --oat: #B9AC9C;
+  --accent-solid: #1E9C92;
+  --line:         rgba(17, 35, 55, 0.14);
+  --line-strong:  rgba(17, 35, 55, 0.28);
+  --line-on-navy: rgba(246, 241, 231, 0.18);
 }
-
-/* The button needs two treatments under this scheme, and the reason is
-   arithmetic rather than taste. Deep water is lighter than navy (7.9:1 on
-   cream against navy's 14.1:1), so any fill able to carry deep-water text
-   must itself be light — light enough that the button stops separating from
-   the cream page. At the 4.5:1 minimum the best possible shape contrast is
-   1.8:1, which is not a button anyone notices.
-
-   So on cream the primary button goes dark with cream type, at 4.9:1 and a
-   strong 4.9:1 against the page. Inside the dark bands it stays light with
-   deep-water type. Same logic the rest of the sheet already uses for light
-   panels sitting on dark bands. */
-:root[data-dark="deepwater"] .btn--primary {
-  background: #1A756B;
-  color: var(--cream);
+/* the old scheme used one button everywhere: teal fill, navy label */
+:root[data-dark="navy"] .btn--primary,
+:root[data-dark="navy"] .band-navy .btn--primary,
+:root[data-dark="navy"] .on-navy .btn--primary,
+:root[data-dark="navy"] .on-navy .plan .btn--primary,
+:root[data-dark="navy"] .band-navy .plan .btn--primary,
+:root[data-dark="navy"] .on-navy .form-panel .btn--primary,
+:root[data-dark="navy"] .band-navy .form-panel .btn--primary {
+  background: #1E9C92;
+  color: #112337;
 }
-:root[data-dark="deepwater"] .btn--primary:hover {
-  background: #166B62;
-  color: var(--cream);
-}
-:root[data-dark="deepwater"] .band-navy .btn--primary,
-:root[data-dark="deepwater"] .on-navy .btn--primary {
-  background: #8FD3C8;
-  color: var(--navy);
-}
-:root[data-dark="deepwater"] .band-navy .btn--primary:hover,
-:root[data-dark="deepwater"] .on-navy .btn--primary:hover {
-  background: #A3DCD2;
-  color: var(--navy);
-}
+:root[data-dark="navy"] :focus-visible { outline-color: #136E67; }
