@@ -706,6 +706,18 @@
 
           track('generate_lead', { enquiry_type: enquiryType, membership_plan: plan });
 
+          // A copy for BNJC's customer records (see privacy.html, "Where it goes"). Sent as plain text so the
+          // browser asks no preflight; a failure here never touches the visitor's confirmation.
+          try {
+            fetch('https://bnjc.co.uk/wp-json/bnjc/v1/cove/enquiry', {
+              method: 'POST',
+              mode: 'cors',
+              keepalive: true,
+              headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+              body: JSON.stringify(payload)
+            }).catch(function () {});
+          } catch (ignore) {}
+
           showStatus('success',
             'Thanks, ' + firstName + '. We’ll be in touch ' +
             (get('form.responseTime') || 'shortly') + '.');
