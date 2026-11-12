@@ -741,6 +741,55 @@
   }
 
   /* ----------------------------------------------------------------------
+     6b. Arriving from a link that names a membership
+     ----------------------------------------------------------------------
+     bnjc.co.uk/gym/ sends each button here with what the visitor chose:
+       ?plan=gym-classes&enquiry=join#visit    (plan = an id from config.plans)
+       ?enquiry=tour#visit                     (enquiry = join, tour or question)
+     The form then opens with that membership and that choice already picked.
+     A plan hidden from this page (published: false, such as Residents) is
+     still offered when a link asks for it, so the choice is never lost.
+     The page address, with these and any utm_ tags, already goes with the
+     enquiry in the page_url field.
+     ---------------------------------------------------------------------- */
+
+  function initFromLink() {
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (e) { return; }
+    var planId = params.get('plan');
+    var enquiry = params.get('enquiry');
+    var select = $('#membership_plan');
+    var types = { join: 'Join', tour: 'Book a free tour', question: 'Ask a question' };
+
+    var plan = planId ? (CFG.plans || []).filter(function (p) { return p.id === planId; })[0] : null;
+    if (plan && select) {
+      var has = Array.prototype.some.call(select.options, function (o) { return o.value === plan.name; });
+      if (!has) {
+        var opt = document.createElement('option');
+        opt.value = plan.name;
+        opt.textContent = plan.name;
+        select.insertBefore(opt, select.lastElementChild);
+      }
+      select.value = plan.name;
+      if (!enquiry) enquiry = 'join';
+    }
+
+    if (enquiry && types[enquiry]) {
+      var radio = $('input[name="enquiry_type"][value="' + types[enquiry] + '"]');
+      if (radio) radio.checked = true;
+    }
+
+    if (plan || (enquiry && types[enquiry])) {
+      track('select_plan', {
+        membership_plan: plan ? plan.name : 'Not sure yet',
+        price: plan ? plan.price : 0,
+        enquiry_type: types[enquiry] || '',
+        link_source: params.get('utm_source') || 'link'
+      });
+    }
+  }
+
+  /* ----------------------------------------------------------------------
      7. Link and button tracking
      ---------------------------------------------------------------------- */
 
@@ -982,6 +1031,7 @@
     initPlans();
     initClasses();
     initForm();
+    initFromLink();
     initTracking();
     initConsent();
   }
